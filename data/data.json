@@ -1,0 +1,10 @@
+{
+  "menu": [
+    { "name": "HOME", "japanese": "ホーム", "URL": "/" },
+    { "name": "STORY", "japanese": "ストーリー", "URL": "/story" },
+    { "name": "CHARACTER", "japanese": "キャラクター", "URL": "/character" },
+    { "name": "SYSTEM", "japanese": "システム", "URL": "/system" },
+    { "name": "NEWS", "japanese": "ニュース", "URL": "/news" },
+    { "name": "MUSIC", "japanese": "ミュージック", "URL": "music" }
+  ]
+}
