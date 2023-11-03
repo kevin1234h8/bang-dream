@@ -6,10 +6,14 @@ type NavbarProps = {
 };
 
 const Navbar = ({ activeMenu }: NavbarProps) => {
+  console.log(activeMenu);
+  if (activeMenu === "home") {
+    activeMenu = "";
+  }
   return (
     <ul className="lg:flex items-center justify-center gap-20  sm:hidden">
       {datas.menu.map((menu, index) => {
-        const isActive = menu.name.toLowerCase() === activeMenu;
+        const isActive = menu.code.toLowerCase() === activeMenu;
         return (
           <li
             key={index}
@@ -17,10 +21,12 @@ const Navbar = ({ activeMenu }: NavbarProps) => {
               isActive ? "active" : ""
             }`}
           >
-            <a href={menu.name.toLowerCase()}>
+            <a href={menu.URL}>
               <span className="menu-name px-2 ">{menu.name}</span>
             </a>
-            <div className="text-[#333] text-[8px]">{menu.japanese}</div>
+            <div className="text-[#333] yakuhanjp text-[8px]">
+              {menu.japanese}
+            </div>
           </li>
         );
       })}

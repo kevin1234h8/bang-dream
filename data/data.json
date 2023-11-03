@@ -1,10 +1,41 @@
 {
   "menu": [
-    { "name": "HOME", "japanese": "ホーム", "URL": "/" },
-    { "name": "STORY", "japanese": "ストーリー", "URL": "/story" },
-    { "name": "CHARACTER", "japanese": "キャラクター", "URL": "/character" },
-    { "name": "SYSTEM", "japanese": "システム", "URL": "/system" },
-    { "name": "NEWS", "japanese": "ニュース", "URL": "/news" },
-    { "name": "MUSIC", "japanese": "ミュージック", "URL": "music" }
+    {
+      "name": "HOME",
+      "japanese": "ホーム",
+      "URL": "/",
+      "code": ""
+    },
+    {
+      "name": "STORY",
+      "japanese": "ストーリー",
+      "URL": "/story",
+      "code": "STORY"
+    },
+    {
+      "name": "CHARACTER",
+      "japanese": "キャラクター",
+      "URL": "/character",
+      "code": "CHARACTER"
+    },
+    {
+      "name": "SYSTEM",
+      "japanese": "システム",
+      "URL": "/system",
+      "code": "SYSTEM"
+    },
+    { "name": "NEWS", "japanese": "ニュース", "URL": "/news", "code": "NEWS" },
+    {
+      "name": "MUSIC",
+      "japanese": "ミュージック",
+      "URL": "/music",
+      "code": "MUSIC"
+    },
+    {
+      "name": "SPECIAL",
+      "japanese": "スペシャル",
+      "URL": "/special/",
+      "code": "SPECIAL"
+    }
   ]
 }

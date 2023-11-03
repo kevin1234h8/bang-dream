@@ -12,6 +12,7 @@ import MorfonicaMembers from "@/assets/morfonica/morfonica-all-member.jpg";
 import MorfonicaLogo from "@/assets/morfonica/morfonica-logo.svg";
 import RaiseASuilenMembers from "@/assets/raise-a-suilen/raise-a-suilen-all-member.png";
 import RaiseASuilenLogo from "@/assets/raise-a-suilen/raise-a-suilen-logo.svg";
+import MyGoMembers from "@/assets/mygo/mygo-all-member.png";
 import { BandInfo } from "@/type";
 
 const bands: BandInfo[] = [
@@ -21,7 +22,7 @@ const bands: BandInfo[] = [
     band_member_image: PoppinPartyMembers,
     band_logo: PoppinPartyLogo,
     movie_url: "https://www.youtube.com/embed/Zz3iJejwNuI",
-    URL: "/character/poppin-party/toyama-kasumi",
+    URL: "/character/poppin-party",
   },
   {
     band_name: "Afterglow",
@@ -29,7 +30,7 @@ const bands: BandInfo[] = [
     band_member_image: AfterglowMembers,
     band_logo: AfterglowLogo,
     movie_url: "https://www.youtube.com/embed/Y-FwCt8B8Dg",
-    URL: "/character/poppin-party",
+    URL: "/character/afterglow",
   },
   {
     band_name: "Pastel＊Palettes",
@@ -37,7 +38,7 @@ const bands: BandInfo[] = [
     band_member_image: PastelPalettesMembers,
     band_logo: PastelPalettesLogo,
     movie_url: "https://www.youtube.com/embed/gQY6596sZ5c",
-    URL: "/character/poppin-party",
+    URL: "/character/pastel-palettes",
   },
   {
     band_name: "Roselia",
@@ -45,7 +46,7 @@ const bands: BandInfo[] = [
     band_member_image: RoseliaMembers,
     band_logo: RoseliaLogo,
     movie_url: "https://www.youtube.com/embed/iYBt-rlYu1A",
-    URL: "/character/poppin-party",
+    URL: "/character/roselia",
   },
   {
     band_name: "Hello Happy World",
@@ -53,7 +54,7 @@ const bands: BandInfo[] = [
     band_member_image: HelloHappyWorldMembers,
     band_logo: HelloHappyWorldLogo,
     movie_url: "https://www.youtube.com/embed/iYBt-rlYu1A",
-    URL: "/character/poppin-party",
+    URL: "/character/hello-happy-world",
   },
   {
     band_name: "Morfonica",
@@ -61,7 +62,7 @@ const bands: BandInfo[] = [
     band_member_image: MorfonicaMembers,
     band_logo: MorfonicaLogo,
     movie_url: "https://www.youtube.com/embed/GEeC6ijp8wg",
-    URL: "/character/poppin-party",
+    URL: "/character/morfonica",
   },
   {
     band_name: "Raise A Suilen",
@@ -69,8 +70,68 @@ const bands: BandInfo[] = [
     band_member_image: RaiseASuilenMembers,
     band_logo: RaiseASuilenLogo,
     movie_url: "https://www.youtube.com/embed/aMWKW_UvK6M",
-    URL: "/character/poppin-party",
+    URL: "/character/raise-a-suilen",
+  },
+  {
+    band_name: "MyGo",
+    band_japanese_name: "",
+    band_member_image: MyGoMembers,
+    band_logo: RaiseASuilenLogo,
+    movie_url: "https://www.youtube.com/embed/aMWKW_UvK6M",
+    URL: "/character/mygo",
   },
 ];
 
-export default bands;
+const bandList = [
+  {
+    bandName: "Poppin'Party",
+    code: "poppin party",
+    url: "/poppin-party/kasumi-toyama",
+  },
+  {
+    bandName: "Afterglow",
+    code: "afterglow",
+    url: "/afterglow/mitake-ran",
+  },
+  {
+    bandName: "Pastel*Palettes",
+    code: "pastel palettes",
+    url: "/pastel-palettes/maruyama-aya",
+  },
+  {
+    bandName: "Roselia",
+    code: "roselia",
+    url: "/roselia/minato-yukina",
+  },
+  {
+    bandName: "ハロー、ハッピーワールド！",
+    code: "hello happy world",
+    url: "/hello-happy-world/tsurumaki-kokoro",
+  },
+  {
+    bandName: "Morfonica",
+    code: "morfonica",
+    url: "/morfonica/kurata-mashiro",
+  },
+  {
+    bandName: "Raise A Suilen",
+    code: "raise a suilen",
+    url: "/raise-a-suilen/layer",
+  },
+  {
+    bandName: "MyGo!!!!",
+    code: "mygo",
+    url: "/mygo/takamatsu-tomori",
+  },
+];
+
+const subNavs = [
+  {
+    name: "SNSアイコン",
+  },
+  {
+    name: "SNSヘッダー",
+  },
+];
+
+export default { bands, bandList, subNavs };
