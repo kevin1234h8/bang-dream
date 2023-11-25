@@ -73,15 +73,6 @@ const Character = ({
     bangDreamMember.image[0].outfitSeasonThree,
   ]);
 
-  if (bandName === "poppin-party") {
-    return (bandName = changePoppinPartyBandName(removeHyphens(bandName)));
-  }
-
-  const { previousBandName, nextBandName } = getPreviousAndNextBandName(
-    bandName,
-    data.bandList,
-  );
-
   useOutsideClick(isIFrameOpen, iFrameWrapperRef, () => {
     closeIframe(setIsIFrameOpen, bangDreamBandIframeVideoRef.current);
   });
@@ -106,6 +97,15 @@ const Character = ({
     });
     // }
   }, [isIFrameOpen]);
+
+  if (bandName === "poppin-party") {
+    return (bandName = changePoppinPartyBandName(removeHyphens(bandName)));
+  }
+
+  const { previousBandName, nextBandName } = getPreviousAndNextBandName(
+    bandName,
+    data.bandList,
+  );
 
   return (
     <div>

@@ -39,7 +39,7 @@ type HomePageProps = {
 const HomePage = ({ bangDreamBands }: HomePageProps) => {
   // const refs = bangDreamBands.map(() => useRef(null));
   const refs = Array.from({ length: bangDreamBands.length }, () =>
-    useRef(null),
+    useRef<HTMLAnchorElement>(null),
   );
   const characterProfileDetailsRef = useRef(null);
   const iFrameWrapperRef = useRef<HTMLDivElement | null>(null);
