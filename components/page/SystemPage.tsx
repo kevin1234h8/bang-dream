@@ -90,25 +90,28 @@ const SystemPage = () => {
 
   return (
     <div>
-      <div className="max-w-7xl mx-auto w-auto">
+      <div className="mx-auto w-auto max-w-7xl">
         <PageTitle title="SYSTEM" japaneseTitle="システム" />
       </div>
-      <div className="max-w-3xl mx-auto w-auto mb-24">
+      <div className="mx-auto mb-24 w-auto max-w-3xl">
         <div className="flex flex-col gap-8">
-          {systems.map((system) => {
+          {systems.map((system, index) => {
             return (
-              <div>
+              <div key={index}>
                 <SpecialSubTitle specialSubTitle={system.type} />
-                <div className="flex items-center justify-center flex-col gap-8">
-                  {system.details.map((detail) => {
+                <div className="flex flex-col items-center justify-center gap-8">
+                  {system.details.map((detail, index) => {
                     return (
-                      <div className="relative flex flex-col gap-4 items-center">
+                      <div
+                        key={index}
+                        className="relative flex flex-col items-center gap-4"
+                      >
                         <div>
                           {detail.type === "video" ? (
-                            <div className="w-[750px] h-[400px] overflow-hidden">
+                            <div className="h-[400px] w-[750px] overflow-hidden">
                               <div
                                 id={`youtube-${getYoutubeVideoId(detail.url)}`}
-                                className="w-[700px] h-[400px] pointer-events-none scale-125 rounded-lg"
+                                className="pointer-events-none h-[400px] w-[700px] scale-125 rounded-lg"
                               ></div>
                             </div>
                           ) : (
@@ -121,20 +124,27 @@ const SystemPage = () => {
                             />
                           )}
                         </div>
-                        <div className="flex items-center flex-col gap-2">
-                          {detail.urlDescriptions.map((urlDescription) => {
-                            return (
-                              <div className="flex items-center justify-center flex-col gap-4 relative top-[-50px]">
-                                <div>
-                                  <div className={`small text-[2.2rem] w-auto`}>
-                                    {urlDescription}
+                        <div className="flex flex-col items-center gap-2">
+                          {detail.urlDescriptions.map(
+                            (urlDescription, index) => {
+                              return (
+                                <div
+                                  key={index}
+                                  className="relative top-[-50px] flex flex-col items-center justify-center gap-4"
+                                >
+                                  <div>
+                                    <div
+                                      className={`small w-auto text-[2.2rem]`}
+                                    >
+                                      {urlDescription}
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            );
-                          })}
+                              );
+                            },
+                          )}
                         </div>
-                        <div className="text-center yakuhanjp text-sm">
+                        <div className="yakuhanjp text-center text-sm">
                           {detail.description}
                         </div>
                       </div>
@@ -150,7 +160,7 @@ const SystemPage = () => {
               height={1100}
               src="https://bang-dream.bushimo.jp/wordpress/wp-content/themes/bang-dream_gbp_v2/assets/images/common/system/btn_guide.png"
               alt=""
-              className="hover:scale-110 duration-[0.4s] ease-in-out my-4"
+              className="my-4 duration-[0.4s] ease-in-out hover:scale-110"
             />
           </Link>
         </div>

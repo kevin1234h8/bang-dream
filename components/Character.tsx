@@ -156,9 +156,9 @@ const Character = ({
               bangDreamMember.image[0].outfitSeasonOne.length > 0 ? (
                 <>
                   {bangDreamMember.image[0].outfitSeasonOne.map(
-                    (seasonOneOutfit: string) => {
+                    (seasonOneOutfit: string, index) => {
                       return (
-                        <SwiperSlide>
+                        <SwiperSlide key={index}>
                           <CldImage
                             width="1100"
                             className="w-full"
@@ -175,9 +175,9 @@ const Character = ({
               ) : bangDreamSeason === 2 ? (
                 <>
                   {bangDreamMember.image[0].outfitSeasonTwo.map(
-                    (seasonTwoOutfit: string) => {
+                    (seasonTwoOutfit: string, index) => {
                       return (
-                        <SwiperSlide>
+                        <SwiperSlide key={index}>
                           <CldImage
                             width="1100"
                             height="1400"
@@ -193,9 +193,9 @@ const Character = ({
               ) : (
                 <>
                   {bangDreamMember.image[0].outfitSeasonThree.map(
-                    (seasonThreeOutfit: string) => {
+                    (seasonThreeOutfit: string, index) => {
                       return (
-                        <SwiperSlide>
+                        <SwiperSlide key={index}>
                           <CldImage
                             width="1100"
                             height="1400"

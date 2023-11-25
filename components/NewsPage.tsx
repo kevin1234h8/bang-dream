@@ -42,9 +42,12 @@ const NewsPage = ({ news }: NewsPageProps) => {
       <PageTitle japaneseTitle="ニュース" title="NEWS" />
       <div className="mx-auto mb-24 w-auto max-w-5xl">
         <div className="grid h-auto grid-cols-3 gap-8">
-          {currentNews.contents.map((n) => {
+          {currentNews.contents.map((n, index) => {
             return (
-              <div className="news-content group rounded-xl px-4  pb-8 pt-2">
+              <div
+                key={index}
+                className="news-content group rounded-xl px-4  pb-8 pt-2"
+              >
                 <div className="flex h-[200px] items-center justify-center overflow-hidden">
                   {/* <Image
                     src={

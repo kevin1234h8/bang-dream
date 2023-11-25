@@ -230,7 +230,7 @@ BandMusicPageProps) => {
                     // const bangDreamBandLogo =
                     //   bangDreamBandLogos.bangDreamBandLogos[index];
                     return (
-                      <div className="flex items-center gap-4">
+                      <div key={index} className="flex items-center gap-4">
                         <input
                           type="radio"
                           checked={

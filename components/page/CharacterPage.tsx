@@ -13,7 +13,6 @@ import { useEffect, useRef, useState } from "react";
 import "swiper/css";
 import Loading from "@/app/character/loading";
 import { Suspense } from "react";
-import SkeletonLoading from "@/app/character/SkeletonLoading";
 import {
   closeIframe,
   getYoutubeVideoId,

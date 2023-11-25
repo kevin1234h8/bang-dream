@@ -204,14 +204,14 @@ const page = () => {
       <PageTitle title="GUIDE" japaneseTitle="攻略ガイド" />
       <div className="mx-auto mb-24 w-auto max-w-5xl">
         <div>
-          {guides.map((guide) => {
+          {guides.map((guide, index) => {
             return (
-              <div className="flex flex-col gap-4">
+              <div key={index} className="flex flex-col gap-4">
                 <SpecialSubTitle specialSubTitle={guide.type} />
                 <div className="flex flex-col gap-16">
-                  {guide.contents.map((content) => {
+                  {guide.contents.map((content, index) => {
                     return (
-                      <div className="flex flex-col gap-4">
+                      <div key={index} className="flex flex-col gap-4">
                         <div className="flex items-center gap-4">
                           <Image
                             src={bangDreamStarOutlineIconSrc}

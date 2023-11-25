@@ -76,9 +76,9 @@ const SpecialSNSPage = ({ specialSNS }: SpecialSNSPage) => {
 
   return (
     <div className=" mb-24">
-      <div className="max-w-4xl mx-auto w-full">
+      <div className="mx-auto w-full max-w-4xl">
         <SubTitle title={"Twitterアイコン"} />
-        <div className="flex items-center justify-center gap-4 mb-[40px]">
+        <div className="mb-[40px] flex items-center justify-center gap-4">
           {data.subNavs.map((subNav, index: number) => {
             return (
               <ReactScroll.Link
@@ -122,14 +122,14 @@ const SpecialSNSPage = ({ specialSNS }: SpecialSNSPage) => {
             const sns = specialSNS[index];
             const specialSNSMembers = addJapaneseNameToMembers(
               sns.members,
-              sns.memberDetails
+              sns.memberDetails,
             );
 
             return (
               <div key={index} className="special-sns-band-container">
                 <div
                   id={`band-${addHyphen(sns.band)}`}
-                  className="special-sns-band-name mt-[30px] mb-[40px] py-2"
+                  className="special-sns-band-name mb-[40px] mt-[30px] py-2"
                 >
                   {editBandName(sns.band)}
                 </div>
@@ -138,18 +138,18 @@ const SpecialSNSPage = ({ specialSNS }: SpecialSNSPage) => {
                     return (
                       <div
                         key={index}
-                        className="flex flex-col items-center special-sns-band-member justify-center"
+                        className="special-sns-band-member flex flex-col items-center justify-center"
                       >
                         <Link href={member.image} download>
                           <Image
-                            className="rounded-full special-sns-band-member-image"
+                            className="special-sns-band-member-image rounded-full"
                             alt={member.image}
                             src={member.image}
                             width={150}
                             height={150}
                           />
                         </Link>
-                        <div className="mt-[11px]  special-sns-japanese-name">
+                        <div className="special-sns-japanese-name  mt-[11px]">
                           {member.japaneseName}
                         </div>
                       </div>
@@ -163,10 +163,10 @@ const SpecialSNSPage = ({ specialSNS }: SpecialSNSPage) => {
 
         <SpecialSubTitle specialSubTitle="SNSヘッダー" id="SNSヘッダー" />
         <div className="flex flex-col gap-8">
-          {specialSNSHeader.map((snsHeader) => {
+          {specialSNSHeader.map((snsHeader, index) => {
             return (
-              <div className="flex flex-col gap-8">
-                <div className="special-sns-band-name  mt-[30px] mb-[40px] py-2">
+              <div key={index} className="flex flex-col gap-8">
+                <div className="special-sns-band-name  mb-[40px] mt-[30px] py-2">
                   {editBandName(snsHeader.band)}
                 </div>
                 <Image

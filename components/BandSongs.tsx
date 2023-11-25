@@ -17,12 +17,12 @@ const BandSongs = ({
       {songs.length > 0 ? (
         <div>
           {" "}
-          {songs.map((bandSong) => {
+          {songs.map((bandSong, index) => {
             return (
-              <div>
+              <div key={index}>
                 <div>
-                  {bandSong.songs.map((song) => {
-                    return <div>{song.singer}</div>;
+                  {bandSong.songs.map((song, index) => {
+                    return <div key={index}>{song.singer}</div>;
                   })}
                 </div>
               </div>

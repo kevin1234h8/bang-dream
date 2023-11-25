@@ -27,7 +27,10 @@ const page = async () => {
           {comicIndex.map((index) => {
             const comic = comics[index];
             return (
-              <div className="flex flex-col items-center gap-8 sm:flex-col md:flex-row">
+              <div
+                key={index}
+                className="flex flex-col items-center gap-8 sm:flex-col md:flex-row"
+              >
                 <div className="flex flex-col gap-4">
                   <div className="yakuhanjp">{editBandName(comic.band)}編</div>
                   <Image

@@ -40,20 +40,21 @@ const page = () => {
   ];
 
   return (
-    <div className="max-w-5xl mx-auto w-auto">
-      <div className="grid grid-cols-2 grid-rows-2 gap-x-[50px] gap-y-[40px] mb-24">
-        {specials.map((special) => {
+    <div className="mx-auto w-auto max-w-5xl">
+      <div className="mb-24 grid grid-cols-2 grid-rows-2 gap-x-[50px] gap-y-[40px]">
+        {specials.map((special, index) => {
           return (
             <Link
+              key={index}
               href={`/special/${special.type}`}
-              className=" flex flex-col gap-4 sw-special-archive-container"
+              className=" sw-special-archive-container flex flex-col gap-4"
             >
-              <div className="p-4  gap-2 shadow-lg rounded-2xl ">
+              <div className="gap-2  rounded-2xl p-4 shadow-lg ">
                 <Image
                   alt=""
                   width={700}
                   height={700}
-                  className="rounded-2xl sw-special-archive-image"
+                  className="sw-special-archive-image rounded-2xl"
                   src={special.image}
                 />
               </div>
