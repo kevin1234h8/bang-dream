@@ -26,9 +26,6 @@ type CharacterPageProps = {
 };
 
 const CharacterPage = ({ bangDreamBands }: CharacterPageProps) => {
-  if (!bangDreamBands) {
-    return [];
-  }
   const bandIndex = [1, 0, 6, 7, 3, 2, 4, 5];
   const [videoId, setVideoId] = useState<string>("");
   const [isPoppinPartyIFrameOpen, setIsPoppinPartyIFrameOpen] =
@@ -46,6 +43,9 @@ const CharacterPage = ({ bangDreamBands }: CharacterPageProps) => {
     setIsIFrameOpen(!isIFrameOpen);
     setVideoId(videoId);
   };
+  if (!bangDreamBands) {
+    return [];
+  }
   useEffect(() => {
     console.log(videoId);
     if (isIFrameOpen) {
