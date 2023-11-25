@@ -52,9 +52,9 @@ const FrequentlyAskQuestionPage = ({
             })}
           </div>
         </div>
-        {frequentlyAskQuestions.map((frequentlyAskQuestion) => {
+        {frequentlyAskQuestions.map((frequentlyAskQuestion, index) => {
           return (
-            <div className="flex flex-col gap-2 p-4 ">
+            <div key={index} className="flex flex-col gap-2 p-4 ">
               <SpecialSubTitle
                 specialSubTitle={frequentlyAskQuestion.name}
                 id={frequentlyAskQuestion.type}
@@ -63,6 +63,7 @@ const FrequentlyAskQuestionPage = ({
                 {frequentlyAskQuestion.datas.map((data, index) => {
                   return (
                     <div
+                      key={index}
                       onClick={() => handleOpenAnswer(index)}
                       className="flex cursor-pointer flex-col gap-3 rounded-xl border-2 border-red p-4"
                     >

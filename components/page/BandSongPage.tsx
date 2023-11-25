@@ -264,8 +264,14 @@ BandMusicPageProps) => {
             {selectedBangDreamSongType === "" ? (
               <SpecialSubTitle specialSubTitle="オリジナル楽曲" />
             ) : null}
-            {songs.map((bandSong) => {
-              return <BandSong bandSong={bandSong} songType={"original"} />;
+            {songs.map((bandSong, index) => {
+              return (
+                <BandSong
+                  key={index}
+                  bandSong={bandSong}
+                  songType={"original"}
+                />
+              );
             })}
             {selectedBangDreamSongType === "cover" ? (
               <SpecialSubTitle specialSubTitle="カバー楽曲" />
@@ -273,8 +279,10 @@ BandMusicPageProps) => {
             {selectedBangDreamSongType === "" ? (
               <SpecialSubTitle specialSubTitle="カバー楽曲" />
             ) : null}
-            {songs.map((bandSong) => {
-              return <BandSong bandSong={bandSong} songType={"cover"} />;
+            {songs.map((bandSong, index) => {
+              return (
+                <BandSong key={index} bandSong={bandSong} songType={"cover"} />
+              );
             })}
             {selectedBangDreamSongType === "extra" ? (
               <SpecialSubTitle specialSubTitle="エクストラ楽曲" />
@@ -282,8 +290,10 @@ BandMusicPageProps) => {
             {selectedBangDreamSongType === "" ? (
               <SpecialSubTitle specialSubTitle="エクストラ楽曲" />
             ) : null}
-            {songs.map((bandSong) => {
-              return <BandSong bandSong={bandSong} songType={"extra"} />;
+            {songs.map((bandSong, index) => {
+              return (
+                <BandSong key={index} bandSong={bandSong} songType={"extra"} />
+              );
             })}
           </div>
         </div>

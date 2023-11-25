@@ -224,9 +224,9 @@ const page = () => {
                           </div>
                         </div>
                         <div className="flex  justify-center gap-4 ">
-                          {content.details.map((detail) => {
+                          {content.details.map((detail, index) => {
                             return (
-                              <div className="flex flex-col gap-4">
+                              <div key={index} className="flex flex-col gap-4">
                                 <Image
                                   width={2100}
                                   height={300}

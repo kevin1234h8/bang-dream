@@ -363,9 +363,9 @@ const HomePage = ({ bangDreamBands }: HomePageProps) => {
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}
           >
-            {idxBanners.map((idxBanner) => {
+            {idxBanners.map((idxBanner, index) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide key={index}>
                   <Link
                     target="_blank"
                     href={idxBanner.redirectUri}

@@ -89,6 +89,7 @@ const NewsPage = ({ news }: NewsPageProps) => {
                 {news.map((n, index: number) => {
                   return (
                     <div
+                      key={index}
                       className={`cursor-pointer text-lightRed ${
                         page === index ? "underline" : ""
                       }`}
