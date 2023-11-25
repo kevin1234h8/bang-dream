@@ -22,6 +22,9 @@ export default async function RootLayout({
   const [randomBangDreamBandMembers] = await Promise.all([
     randomBangDreamBandMemberDatas,
   ]);
+  if (!randomBangDreamBandMemberDatas) {
+    return [];
+  }
 
   return (
     <html lang="en">
