@@ -1,4 +1,4 @@
-import BangDreamBand from "@/model/BangDreamBand";
+import BangDreamBand from "@/model/BangDreamBandMember";
 import { NextRequest, NextResponse } from "next/server";
 import databaseConnect from "@/lib/database";
 import { request } from "http";

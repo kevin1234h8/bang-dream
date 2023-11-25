@@ -1,37 +1,74 @@
 import databaseConnect from "@/lib/database";
 import { logger } from "@/logger";
 import BangDreamBand from "@/model/BangDreamBand";
-import { NextResponse } from "next/server";
+import {
+  generatePostErrorMessage,
+  generatePostSuccessMessage,
+  generateSuccessGetMessage,
+} from "@/utils/messageUtils";
+import { log } from "console";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async () => {
+export async function GET() {
+  await databaseConnect();
+  const bangDreamBands = await BangDreamBand.aggregate([
+    {
+      $lookup: {
+        from: "bangdreambandlogos",
+        localField: "band",
+        foreignField: "name",
+        as: "result",
+      },
+    },
+
+    {
+      $unwind: "$result",
+    },
+    {
+      $project: {
+        _id: 1,
+        band: 1,
+        bandJapaneseName: 1,
+        bandAllMemberImage: 1,
+        movieUrl: 1,
+        image: "$result.image",
+      },
+    },
+  ]);
+
+  logger.debug(JSON.parse(generateSuccessGetMessage(bangDreamBands)));
+  return NextResponse.json(
+    {
+      result: JSON.parse(generateSuccessGetMessage(bangDreamBands)),
+    },
+    { status: 200 }
+  );
+}
+
+export async function POST(request: NextRequest) {
   try {
     await databaseConnect();
-    const bangDreamBand = await BangDreamBand.aggregate([
-      {
-        $lookup: {
-          from: "bangdreambandlogos",
-          localField: "bandMembers.band",
-          foreignField: "name",
-          as: "logo",
-        },
-      },
-      {
-        $unwind: "$logo",
-      },
-      {
-        $project: {
-          bandMembers: 1,
-          logo: "$logo.image",
-        },
-      },
-    ]);
-    logger.info({ message: "Data retrieval was successful" });
-    return NextResponse.json({ bangDreamBand }, { status: 200 });
-  } catch (err) {
-    logger.error({ message: "Failed to retrieve data", error: err });
+    const body = await request.json();
+    const newBangDreamBandData = await BangDreamBand.create(body);
+    await (await newBangDreamBandData).save();
+    const message = generatePostSuccessMessage(
+      "Successfully created a new entry for Bang Dream Band."
+    );
+    logger.info(message);
     return NextResponse.json(
-      { message: "failed to retrive data" },
+      {
+        result: newBangDreamBandData,
+      },
       { status: 200 }
     );
+  } catch (error) {
+    console.error(error);
+    const message = generatePostErrorMessage(
+      "Failed to create a new entry for Bang Dream Band"
+    );
+    logger.warn(message);
+    return NextResponse.json(generatePostErrorMessage(message), {
+      status: 500,
+    });
   }
-};
+}

@@ -7,6 +7,12 @@
       "code": ""
     },
     {
+      "name": "NEWS",
+      "japanese": "ニュース",
+      "URL": "/news",
+      "code": "NEWS"
+    },
+    {
       "name": "STORY",
       "japanese": "ストーリー",
       "URL": "/story",
@@ -24,7 +30,7 @@
       "URL": "/system",
       "code": "SYSTEM"
     },
-    { "name": "NEWS", "japanese": "ニュース", "URL": "/news", "code": "NEWS" },
+
     {
       "name": "MUSIC",
       "japanese": "ミュージック",
@@ -36,6 +42,12 @@
       "japanese": "スペシャル",
       "URL": "/special/",
       "code": "SPECIAL"
+    },
+    {
+      "name": "FAQ",
+      "japanese": "よくあるご質問",
+      "URL": "/faq/",
+      "code": "FAQ"
     }
   ]
 }

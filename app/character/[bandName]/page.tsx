@@ -1,28 +1,26 @@
+"use client";
 import {
   getBangDreamBand,
   getBangDreamBandLogo,
   getBangDreamBandLogoByBandName,
-} from "@/lib/BandDreamApi";
+} from "@/lib/BangDreamApiHandler";
 // import React, { useState } from "react";
 import data from "@/data/band";
-import BangDreamBand from "@/model/BangDreamBand";
+import BangDreamBand from "@/model/BangDreamBandMember";
 import BangDreamBandDetails from "@/components/BangDreamBandDetails";
-import {
-  addHyphen,
-  formatBandName,
-  removeHyphens,
-} from "@/utils/functionsUtils";
+import { addHyphen, removeHyphens } from "@/utils/stringUtils";
 import Link from "next/link";
 import SwPlay from "@/assets/thumbnail_play.svg";
 import Image from "next/image";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import SwMoreButton from "@/components/SwMoreButton";
-import Loading from "./Loading";
 import BangDreamBandLogo from "@/model/BangDreamBandLogo";
 import BangDreamBandLogos from "@/components/BangDreamBandLogo";
 import BangDreamBandLogoIcon from "@/components/BangDreamBandLogoIcon";
 import BangDreamBandYoutubeIFrameVideo from "@/components/BangDreamBandYoutubeIFrameVideo";
 import BandPage from "@/components/page/BandPage";
+import Loading from "./loading";
+import { getYoutubeVideoId } from "@/utils/youtubeUtils";
 
 type Params = {
   params: {
@@ -42,15 +40,12 @@ const page = async ({ params: { bandName } }: Params) => {
       bangDreamBandLogoDatas,
       bangDreamBandLogoIconByBandNameData,
     ]);
+  
+
   const bandIndices: number[] = [2, 4, 0, 3, 1];
   return (
     <div>
-      <div className="flex items-center justify-center character-background my-20 relative">
-        <div className="character-background-deco"></div>
-        <div className="character-background-text">CHARACTER</div>
-        <div className="character-background-text_japan">キャラクター</div>
-      </div>
-      <div className="max-w-5xl mx-auto w-auto flex items-center justify-around">
+      <div className="mx-auto flex w-auto max-w-5xl items-center justify-around">
         {data.bandList.map((band, index) => {
           return (
             <Link
@@ -65,18 +60,23 @@ const page = async ({ params: { bandName } }: Params) => {
           );
         })}
       </div>
-      <div className="mx-auto max-w-5xl w-[250px] my-[50px]">
+      <div className="mx-auto my-[50px] w-[250px] max-w-5xl">
         <BangDreamBandLogoIcon logo={bangDreamBandLogoIcon.bangDreamBandLogo} />
       </div>
-      <div className="max-w-5xl w-auto mx-auto gap-2  mb-[100px] flex items-center">
+
+      {/* <Loading /> */}
+      <div className="mx-auto mb-[100px] flex w-auto  max-w-5xl items-center gap-2">
+        {/* <Suspense fallback={<Loading />}> */}
         {bandIndices.map((index) => {
           const band = bangDreamBand[index];
           return (
-            <Suspense fallback={<Loading />} key={band.bandMembers.name}>
-              <BangDreamBandDetails band={band.bandMembers} />
-            </Suspense>
+            <BangDreamBandDetails
+              key={band.bandMembers.name}
+              band={band.bandMembers}
+            />
           );
         })}
+        {/* </Suspense> */}
       </div>
       <BandPage
         bangDreamBandLogoIcon={bangDreamBandLogoIcon}

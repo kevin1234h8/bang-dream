@@ -1,12 +1,12 @@
 import React from "react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import { getBangDreamBand, getBangDreamMember } from "@/lib/BandDreamApi";
+
+import {
+  getBangDreamBand,
+  getBangDreamMember,
+} from "@/lib/BangDreamApiHandler";
 import Character from "@/components/Character";
 import { getSocialMedia } from "@/lib/SocialMediaApi";
-import { formatBandName, removeHyphens } from "@/utils/functionsUtils";
+import { removeHyphens } from "@/utils/stringUtils";
 type Params = {
   params: {
     bandName: string;

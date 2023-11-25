@@ -3,7 +3,7 @@
 import { BandMember, BangDreamBand } from "@/type";
 import React from "react";
 import { CldImage } from "next-cloudinary";
-import { addHyphen } from "@/utils/functionsUtils";
+import { addHyphen } from "@/utils/stringUtils";
 import Link from "next/link";
 type BangDreamBandDetailsProps = {
   band: BandMember;

@@ -1,6 +1,6 @@
 import databaseConnect from "@/lib/database";
 import BangDreamBandLogo from "@/model/BangDreamBandLogo";
-import { sanitizeString } from "@/utils/functionsUtils";
+import { sanitizeString } from "@/utils/stringUtils";
 import { useRouter } from "next/router";
 import { NextResponse } from "next/server";
 

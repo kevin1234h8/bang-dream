@@ -8,11 +8,11 @@ import SwMoreButton from "../SwMoreButton";
 import BangDreamBandYoutubeIFrameVideo from "../BangDreamBandYoutubeIFrameVideo";
 import { BangDreamBandLogoIcon, BangDreamBandLogos } from "@/type";
 import BangDreamBandLogo from "../BangDreamBandLogo";
-import { addHyphen, getYoutubeVideoId } from "@/utils/functionsUtils";
-import Loading from "@/app/character/[bandName]/Loading";
+import { addHyphen } from "@/utils/stringUtils";
 import Hamburger from "../Hamburger";
-import { onPlayerReady } from "@/utils/youtubeUtils";
+import { getYoutubeVideoId, onPlayerReady } from "@/utils/youtubeUtils";
 import useOutsideClick from "@/hooks/useOutsideClick";
+import Loading from "@/app/character/loading";
 
 type BandPageProps = {
   bangDreamBandLogoIcon: BangDreamBandLogoIcon;
@@ -113,28 +113,18 @@ const BandPage = ({
           </div>
         </div>
       </div>
-      {/* {bangDreamBand.bandMembers.map((bandMember, index) => {
-    return <div>{bandMember.name}</div>;
-  })} */}
+
       <div className="mx-auto max-w-5xl w-auto flex items-center justify-center gap-8 flex-col">
         <div className="flex items-center justify-center flex-col gap-4 relative top-[-35px]">
           <div>
             <div
-              className={`small ${
-                // bandName === "Pastel Palettes" ? "Pastel-palettes" : bandName
-                addHyphen(bandName)
-              }`}
+              className={`small text-[2.2rem] w-[600px] ${addHyphen(bandName)}`}
             >
               花咲川女子学園で結成された
             </div>
           </div>
           <div>
-            <div
-              className={`large ${
-                // bandName === "Pastel Palettes" ? "Pastel-palettes" : bandName
-                addHyphen(bandName)
-              }`}
-            >
+            <div className={`large ${addHyphen(bandName)}`}>
               ガールズバンド！
             </div>
           </div>

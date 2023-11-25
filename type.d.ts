@@ -167,3 +167,53 @@ type SpecialComic = {
   updatedAt: string;
   __v: number;
 };
+
+type BangDreamBands = {
+  _id: string;
+  band: string;
+  bandJapaneseName: string;
+  bandAllMemberImage: string;
+  image: string;
+  movieUrl: string;
+  logo_poppinparty_idwmsx: string;
+};
+
+type BangDreamSong = {
+  singer: string;
+  lyric: string;
+  composition: string;
+  arrangement: string;
+  type: string;
+  title: string;
+  _id: string;
+};
+type BangDreamSongs = {
+  _id: string;
+  band: string;
+  songs: BangDreamSong[];
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+type NewsItem = {
+  image: string;
+  description: string;
+  date: string;
+};
+
+type NewsPage = {
+  page: number;
+  contents: NewsItem[];
+};
+
+type FAQItem = {
+  question: string;
+  answers: string[];
+};
+
+type FAQSection = {
+  type: string;
+  name: string;
+  datas: FAQItem[];
+};

@@ -9,3 +9,12 @@ export const closeIframe = (setState: any, iframeVideo: any) => {
     iframeVideo = null;
   }
 };
+
+export const getYoutubeVideoIdLong = (embedUrl: string) => {
+  const url = new URL(embedUrl);
+  return url.searchParams.get("v");
+};
+
+export const getYoutubeVideoId = (embedUrl: string) => {
+  return embedUrl.split("/").pop();
+};

@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import data from "@/data/band";
-import { addHyphen } from "@/utils/functionsUtils";
+import { addHyphen } from "@/utils/stringUtils";
 import SpecialSNSPage from "@/components/page/SpecialSNSPage";
 import { getSocialMedia } from "@/lib/SocialMediaApi";
 const page = async () => {

@@ -1,5 +1,5 @@
 import { BandList, SpecialSNSMember, SpecialSNSMemberDetails } from "@/type";
-import { capitalizeFirstLetter, convertToUppercase } from "./functionsUtils";
+import { capitalizeFirstLetter, convertToUppercase } from "./stringUtils";
 
 export const changePoppinPartyBandName = (bandName: string) => {
   return bandName.replace(bandName, "Poppin'Party");

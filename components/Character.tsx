@@ -1,28 +1,32 @@
 "use client";
 
-import { BandMember, BangDreamBand, SocialMedia } from "@/type";
-import YouTubeIframeLoader from "youtube-iframe";
-import { CldImage } from "next-cloudinary";
-import React, { useState, useEffect, useRef } from "react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import BangDreamMemberProfile from "./BangDreamMemberProfile";
-import data from "@/data/band";
-import IndexImage from "@/assets/index.svg";
 import ThumbnailPlayIcon from "@/assets/thumbnail_play.svg";
+import data from "@/data/band";
+import useOutsideClick from "@/hooks/useOutsideClick";
+import { BandMember, BangDreamBand, SocialMedia } from "@/type";
+import {
+  changePoppinPartyBandName,
+  getPreviousAndNextBandName,
+} from "@/utils/bandNameUtils";
 import {
   addHyphen,
   arrayToStringWithCommas,
   convertToUppercase,
-  getPreviousAndNextBandName,
-  getYoutubeVideoId,
   removeHyphens,
-} from "@/utils/functionsUtils";
+} from "@/utils/stringUtils";
+import {
+  closeIframe,
+  getYoutubeVideoId,
+  onPlayerReady,
+} from "@/utils/youtubeUtils";
+import { CldImage } from "next-cloudinary";
 import Image from "next/image";
 import Link from "next/link";
-import { changePoppinPartyBandName } from "@/utils/bandNameUtils";
-import useOutsideClick from "@/hooks/useOutsideClick";
-import { closeIframe, onPlayerReady } from "@/utils/youtubeUtils";
+import { useEffect, useRef, useState } from "react";
+import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import YouTubeIframeLoader from "youtube-iframe";
+import BangDreamMemberProfile from "./BangDreamMemberProfile";
 import Hamburger from "./Hamburger";
 import Index from "./Index";
 import SwShare from "./SwShare";
@@ -72,7 +76,7 @@ const Character = ({
 
   const { previousBandName, nextBandName } = getPreviousAndNextBandName(
     bandName,
-    data.bandList
+    data.bandList,
   );
 
   const iFrameWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -82,8 +86,6 @@ const Character = ({
   });
 
   let bangDreamBandIframeVideo: any = null;
-
-  
 
   useEffect(() => {
     if (isIFrameOpen) {
@@ -100,7 +102,7 @@ const Character = ({
             events: {
               onReady: onPlayerReady,
             },
-          }
+          },
         );
       });
     }
@@ -109,7 +111,7 @@ const Character = ({
   return (
     <div>
       {{ isIFrameOpen } ? <Hamburger state={isIFrameOpen} /> : null}
-      <div className="flex items-end justify-center mb-4 ">
+      <div className="mb-4 flex items-end justify-center ">
         {bangDreamMember.image[0].outfitSeasonOne.length > 0 ? (
           <div
             className={`season ${bangDreamSeason === 1 ? "active" : ""}`}
@@ -167,7 +169,7 @@ const Character = ({
                           />
                         </SwiperSlide>
                       );
-                    }
+                    },
                   )}
                 </>
               ) : bangDreamSeason === 2 ? (
@@ -185,7 +187,7 @@ const Character = ({
                           />
                         </SwiperSlide>
                       );
-                    }
+                    },
                   )}
                 </>
               ) : (
@@ -203,21 +205,21 @@ const Character = ({
                           />
                         </SwiperSlide>
                       );
-                    }
+                    },
                   )}
                 </>
               )}
             </Swiper>
           </div>
 
-          <div className="flex flex-col relative top-[110px] px-8 md:pl-8 md:pr-20 lg:px-8 ">
+          <div className="relative top-[110px] flex flex-col px-8 md:pl-8 md:pr-20 lg:px-8 ">
             <div className="flex items-center gap-4">
-              <div className="bg-white relative p-4">
-                <div className="flex gap-2 items-center  ">
-                  <div className="text-[#b92b5d] text-[12px]">
+              <div className="relative bg-white p-4">
+                <div className="flex items-center gap-2  ">
+                  <div className="text-[12px] text-[#b92b5d]">
                     {bangDreamMember.band}
                   </div>
-                  <div className="text-[#b92b5d] text-[12px]">
+                  <div className="text-[12px] text-[#b92b5d]">
                     {bangDreamMember.role}
                   </div>
                 </div>
@@ -229,11 +231,11 @@ const Character = ({
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-3">
-                  <div className="text-[10px] w-[10px] text-[#b92b5d]">CV</div>
+                  <div className="w-[10px] text-[10px] text-[#b92b5d]">CV</div>
                   <div>{bangDreamMember.cv}</div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="text-[10px] w-[10px] text-[#b92b5d]">Vo.</div>
+                  <div className="w-[10px] text-[10px] text-[#b92b5d]">Vo.</div>
                   <div>{bangDreamMember.cv}</div>
                 </div>
               </div>
@@ -242,13 +244,13 @@ const Character = ({
             <div className=" member-japanese-name-hiragana text-[12px] text-[#b92b5d] ">
               {bangDreamMember.japaneseNameHiragana}
             </div>
-            <div className="bg-[#b92b5d] text-[12px] text-white w-[100px] p-1 flex items-center justify-center">
+            <div className="flex w-[100px] items-center justify-center bg-[#b92b5d] p-1 text-[12px] text-white">
               コード
             </div>
-            <div className="text-xl my-4">キラキラドキドキ</div>
+            <div className="my-4 text-xl">キラキラドキドキ</div>
             <div className="flex gap-4">
               <div className="flex flex-col gap-4">
-                <div className="bg-[#b92b5d] text-[12px] text-white w-[100px] p-1 flex items-center justify-center">
+                <div className="flex w-[100px] items-center justify-center bg-[#b92b5d] p-1 text-[12px] text-white">
                   カード
                 </div>
                 <div className="w-[250px] ">
@@ -262,17 +264,17 @@ const Character = ({
                 </div>
               </div>
               <div className="flex flex-col gap-4">
-                <div className="bg-[#b92b5d] text-[12px] text-white w-[100px] p-1 flex items-center justify-center">
+                <div className="flex w-[100px] items-center justify-center bg-[#b92b5d] p-1 text-[12px] text-white">
                   ムービー
                 </div>
-                <figure className="w-[250px] overflow-hidden thumbnail-container">
+                <figure className="thumbnail-container w-[250px] overflow-hidden">
                   <CldImage
                     width="1334"
                     height="1002"
                     src={bangDreamMember.thumbnail}
                     sizes="100%"
                     alt="Description of my image"
-                    className="object-cover thumbnail"
+                    className="thumbnail object-cover"
                   />
                   <div className="thumbnail-play-container">
                     <Image
@@ -289,7 +291,7 @@ const Character = ({
                 </figure>
               </div>
             </div>
-            <div className="grid grid-cols-2 grid-rows-2 gap-x-4 gap-y-2 my-4">
+            <div className="my-4 grid grid-cols-2 grid-rows-2 gap-x-4 gap-y-2">
               <BangDreamMemberProfile title="一人称" description="私" />
               <BangDreamMemberProfile
                 title="学校"
@@ -314,7 +316,7 @@ const Character = ({
               <BangDreamMemberProfile
                 title="好きな食べ物"
                 description={arrayToStringWithCommas(
-                  bangDreamMember.favoriteFood
+                  bangDreamMember.favoriteFood,
                 )}
               />
               <BangDreamMemberProfile
@@ -326,10 +328,10 @@ const Character = ({
                 description={arrayToStringWithCommas(bangDreamMember.hobby)}
               />
             </div>
-            <div className="px-4 text-xs py-2 bg-white">
+            <div className="bg-white px-4 py-2 text-xs">
               {bangDreamMember.description}
             </div>
-            <div className="flex flex-row justify-end gap-4 my-8">
+            <div className="my-8 flex flex-row justify-end gap-4">
               {/* <div className="flex items-center  gap-4">
                 <div className="row-bullet-text text-[14px]">SHARE</div>
                 {socialMedias.map((socialMedia) => {
@@ -354,9 +356,9 @@ const Character = ({
           </div>
         </div>
       </div>
-      <div className="mt-[8rem] my-[5rem] chara-list-container max-w-full mx-auto w-[1500px]">
+      <div className="chara-list-container mx-auto my-[5rem] mt-[8rem] w-[1500px] max-w-full">
         <div className="flex items-center justify-around ">
-          <div className="flex items-center gap-4 char-list_prev">
+          <div className="char-list_prev flex items-center gap-4">
             <div className="chara-list-dot_left"></div>
             <div className="text-[#b92b5d]">
               <a href={`/character${previousBandName?.url}`}>
@@ -370,10 +372,10 @@ const Character = ({
                 return (
                   <Link
                     href={`/character/${addHyphen(
-                      band.bandMembers.band
+                      band.bandMembers.band,
                     )}/${addHyphen(band.bandMembers.name)}`}
                     key={index}
-                    className={`w-[140px] h-[140px] overflow-hidden chara-list_detail ${
+                    className={`chara-list_detail h-[140px] w-[140px] overflow-hidden ${
                       band.bandMembers.name === removeHyphens(characterName)
                         ? "active"
                         : ""
@@ -382,7 +384,7 @@ const Character = ({
                     <div className="w-[300px]">
                       <CldImage
                         width="1100"
-                        className="w-full chara-list_image"
+                        className="chara-list_image w-full"
                         height="1400"
                         src={band.bandMembers.image[0].outfitSeasonThree[0]}
                         sizes="100%"
@@ -398,7 +400,7 @@ const Character = ({
               <div></div>
             </div>
           </div>
-          <div className="flex items-center gap-4 char-list_prev">
+          <div className="char-list_prev flex items-center gap-4">
             <div className="text-[#b92b5d]">
               <Link href={`/character${nextBandName?.url}`}>
                 {nextBandName?.bandName}
@@ -439,16 +441,16 @@ const Character = ({
         <div
           className={`fixed bg-[rgba(0,0,0,0.3)] ${
             isIFrameOpen ? "flex" : "hidden"
-          } inset-0 i-frame items-center justify-center m-0 h-full  `}
+          } i-frame inset-0 m-0 h-full items-center justify-center  `}
         >
           <div
             ref={iFrameWrapperRef}
-            className="w-[75%] h-[75%] "
+            className="h-[75%] w-[75%] "
             onClick={(e) => e.stopPropagation()}
           >
             <div
               id={`youtube-${getYoutubeVideoId(
-                bangDreamMember.introductionMovie
+                bangDreamMember.introductionMovie,
               )}`}
             ></div>
           </div>

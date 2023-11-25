@@ -12,8 +12,8 @@ import Image from "next/image";
 import SpecialDescription from "../SpecialDescription";
 import SwPlay from "@/assets/thumbnail_play.svg";
 import ThumbnailPlayIcon from "@/assets/thumbnail_play.svg";
-import { getYoutubeVideoId } from "@/utils/functionsUtils";
-import { onPlayerReady } from "@/utils/youtubeUtils";
+import {} from "@/utils/stringUtils";
+import { getYoutubeVideoId, onPlayerReady } from "@/utils/youtubeUtils";
 import useOutsideClick from "@/hooks/useOutsideClick";
 import { SocialMedia, SpecialMovie } from "@/type";
 import Hamburger from "../Hamburger";
@@ -33,48 +33,38 @@ const SpecialMoviePage = ({
   specialPastelLifeMovies,
   socialMedias,
 }: SpecialMoviePageProps) => {
-  const [nextSpecialRedirectUrl, setNextSpecialRedirectUrl] =
-    useState<string>("");
-  const [previousSpecialRedirectUrl, setPreviousSpecialRedirectUrl] =
-    useState<string>("");
-  const [isNextSpecialRedirectUrlExists, setIsNextSpecialRedirectUrlExists] =
-    useState<boolean>(true);
-  const [isPreviousSpecialRedirectUrl, setIsPreviousSpecialRedirectUrl] =
-    useState<boolean>(true);
-  const pathname = usePathname();
+  const pvMovieIFrameWrapperRef = useRef<HTMLDivElement | null>(null);
+  var pvMovieYoutubeIFrame: any = null;
+  const pvMovieIndex = [1, 0, 3, 2];
+  const mvMovieIndex = [3, 0, 1, 4, 5, 6, 2];
+  const pastelLifeMovieIndex = [1, 3, 5, 4, 2, 0];
 
   const [isPVMovieOpen, setIsPVMovieOpen] = useState<boolean>(false);
-  const [pvMovieIndex, setPvMovieIndex] = useState<number>();
   const [isMvMovieOpen, setIsMvMovieOpen] = useState<boolean>(false);
-  const [mvMovieIndex, setMvMovieIndex] = useState<number>();
-
-  const specialRedirectUrl = [
-    "/special/sns",
-    "/special/movie",
-    "/special/manga",
-    "/special/comic",
-    "/special/streamer",
-  ];
+  const [isPastelLifeMovieOpen, setIsPastelLifeMovieOpen] =
+    useState<boolean>(false);
 
   const movieType = ["PV", "MV", "ぱすてるらいふ"];
 
-  var pvMovieYoutubeIFrame: any = null;
-  const videoIdRef = useRef<string>("");
-  const handleOpenPVMovie = (videoId: string, index: number) => {
-    setPvMovieIndex(index);
-    videoIdRef.current = videoId;
+  // const videoIdRef = useRef<string>("");
+  const [videoId, setVideoId] = useState<string>("");
+  const handleOpenPVMovie = (videoId: string) => {
+    setVideoId(videoId);
     setIsPVMovieOpen(true);
   };
 
-  const handleOpenMvMovie = (videoId: string, index: number) => {
-    setMvMovieIndex(index);
-    videoIdRef.current = videoId;
+  const handleOpenMvMovie = (videoId: string) => {
+    setVideoId(videoId);
     setIsMvMovieOpen(true);
   };
 
+  const handleOpenPastelLifeMovie = (videoId: string) => {
+    setVideoId(videoId);
+    setIsPastelLifeMovieOpen(true);
+  };
+
   useEffect(() => {
-    const videoId = videoIdRef.current;
-    if (isPVMovieOpen) {
+    if (isPVMovieOpen || isMvMovieOpen || isPastelLifeMovieOpen) {
       YouTubeIframeLoader.load(function (YT) {
         pvMovieYoutubeIFrame = new YT.Player(`youtube-${videoId}`, {
           height: "100%",
@@ -89,13 +79,7 @@ const SpecialMoviePage = ({
         });
       });
     }
-  }, [isPVMovieOpen, videoIdRef.current]);
-
-  const pvMovieIFrameWrapperRef = useRef<HTMLDivElement | null>(null);
-
-  // useOutsideClick(pvMovieIFrameWrapperRef, () => {
-  //   closePVMovieIFrame();
-  // });
+  }, [isPVMovieOpen, videoId]);
 
   useEffect(() => {
     const handleWrapperClick = (event: MouseEvent) => {
@@ -125,8 +109,10 @@ const SpecialMoviePage = ({
   return (
     <>
       {{ isPVMovieOpen } ? <Hamburger state={isPVMovieOpen} /> : null}
+      {{ isMvMovieOpen } ? <Hamburger state={isPVMovieOpen} /> : null}
+      {{ isPastelLifeMovieOpen } ? <Hamburger state={isPVMovieOpen} /> : null}
 
-      <div className="max-w-4xl  mx-auto w-auto mb-24 sm:p-12 ">
+      <div className="mx-auto  mb-24 w-auto max-w-4xl sm:p-12 ">
         <SubTitle title="ムービー" />
         <div className="flex items-center justify-center gap-4">
           {movieType.map((type, index: number) => {
@@ -146,19 +132,20 @@ const SpecialMoviePage = ({
           })}
         </div>
         <SpecialSubTitle specialSubTitle="PV" id="PV" />
-        <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-y-[58px] gap-x-[28px]">
-          {specialPVMovies.map((movie, index: number) => {
+        <div className="grid gap-x-[28px] gap-y-[58px] sm:grid-cols-1 md:grid-cols-2">
+          {pvMovieIndex.map((index: number) => {
+            const movie = specialPVMovies[index];
             return (
               <div key={index}>
-                <div className="relative group overflow-hidden">
-                  <div className="thumbnail-container ">
+                <div className="group relative overflow-hidden">
+                  <div className="thumbnail-container">
                     <div className="flex flex-col gap-4">
                       <Image
                         src={movie.thumbnail}
                         alt={"movie-thumbnail"}
                         width={1000}
                         height={1000}
-                        className="rounded-lg group-hover:scale-105 transition duration-[0.4s] sm:w-[100%]"
+                        className="rounded-lg transition duration-[0.4s] group-hover:scale-105 sm:w-[100%]"
                         priority
                       />
                       <SpecialDescription description={movie.description} />
@@ -174,25 +161,9 @@ const SpecialMoviePage = ({
                       onClick={() =>
                         handleOpenPVMovie(
                           getYoutubeVideoId(movie.youtubeVideoUrl) as string,
-                          index
                         )
                       }
                     />
-                  </div>
-                </div>
-                <div
-                  className={`fixed bg-[rgba(0,0,0,0.3)] ${
-                    isPVMovieOpen && pvMovieIndex === index ? "flex" : "hidden"
-                  } inset-0 z-20 items-center justify-center m-0 `}
-                >
-                  <div
-                    ref={pvMovieIFrameWrapperRef}
-                    className="w-[75%] h-[75%] "
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <div
-                      id={`youtube-${getYoutubeVideoId(movie.youtubeVideoUrl)}`}
-                    ></div>
                   </div>
                 </div>
               </div>
@@ -201,11 +172,13 @@ const SpecialMoviePage = ({
         </div>
 
         <SpecialSubTitle specialSubTitle="MV" id="MV" />
-        <div className="grid md:grid-cols-2 sm:grid-cols-1  gap-y-[58px] gap-x-[28px]">
-          {specialMVMovies.map((movie, index: number) => {
+        <div className="grid gap-x-[28px] gap-y-[58px]  sm:grid-cols-1 md:grid-cols-2">
+          {mvMovieIndex.map((index: number) => {
+            const movie = specialMVMovies[index];
+
             return (
               <div key={index}>
-                <div className="relative group overflow-hidden">
+                <div className="group relative overflow-hidden">
                   <div className="thumbnail-container ">
                     <div className="flex flex-col gap-4">
                       <Image
@@ -213,7 +186,7 @@ const SpecialMoviePage = ({
                         alt={"movie-thumbnail"}
                         width={1000}
                         height={1000}
-                        className="rounded-lg group-hover:scale-105 transition duration-[0.4s]"
+                        className="rounded-lg transition duration-[0.4s] group-hover:scale-105"
                         priority
                       />
                       <SpecialDescription description={movie.description} />
@@ -229,25 +202,9 @@ const SpecialMoviePage = ({
                       onClick={() =>
                         handleOpenMvMovie(
                           getYoutubeVideoId(movie.youtubeVideoUrl) as string,
-                          index
                         )
                       }
                     />
-                  </div>
-                </div>
-                <div
-                  className={`fixed bg-[rgba(0,0,0,0.3)] ${
-                    isPVMovieOpen && pvMovieIndex === index ? "flex" : "hidden"
-                  } inset-0 z-20 items-center justify-center m-0 `}
-                >
-                  <div
-                    ref={pvMovieIFrameWrapperRef}
-                    className="w-[75%] h-[75%] "
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <div
-                      id={`youtube-${getYoutubeVideoId(movie.youtubeVideoUrl)}`}
-                    ></div>
                   </div>
                 </div>
               </div>
@@ -255,11 +212,14 @@ const SpecialMoviePage = ({
           })}
         </div>
         <SpecialSubTitle specialSubTitle="ぱすてるらいふ" id="ぱすてるらいふ" />
-        <div className="grid grid-cols-2 gap-y-[58px] gap-x-[28px]">
-          {specialPastelLifeMovies.map((movie, index: number) => {
+        <div className="grid grid-cols-2 gap-x-[28px] gap-y-[58px]">
+          {pastelLifeMovieIndex.map((index: number) => {
+            const movie = specialPastelLifeMovies[index];
             return (
               <div key={index}>
-                <div className="relative group overflow-hidden">
+                <div>{getYoutubeVideoId(movie.youtubeVideoUrl)}</div>
+
+                <div className="group relative overflow-hidden">
                   <div className="thumbnail-container ">
                     <div className="flex flex-col gap-4">
                       <Image
@@ -267,7 +227,7 @@ const SpecialMoviePage = ({
                         alt={"movie-thumbnail"}
                         width={1000}
                         height={1000}
-                        className="rounded-lg group-hover:scale-105 transition duration-[0.4s]"
+                        className="rounded-lg transition duration-[0.4s] group-hover:scale-105"
                         priority
                       />
                       <SpecialDescription description={movie.description} />
@@ -280,33 +240,32 @@ const SpecialMoviePage = ({
                       height={30}
                       className="thumbnail-play"
                       alt="thumbnail_play"
-                      // onClick={() =>
-                      //   handleOpenPVMovie(
-                      //     getYoutubeVideoId(movie.youtubeVideoUrl) as string,
-                      //     index
-                      //   )
-                      // }
+                      onClick={() =>
+                        handleOpenPastelLifeMovie(
+                          getYoutubeVideoId(movie.youtubeVideoUrl) as string,
+                        )
+                      }
                     />
-                  </div>
-                </div>
-                <div
-                  className={`fixed bg-[rgba(0,0,0,0.3)] ${
-                    isPVMovieOpen && pvMovieIndex === index ? "flex" : "hidden"
-                  } inset-0 z-20 items-center justify-center m-0 `}
-                >
-                  <div
-                    ref={pvMovieIFrameWrapperRef}
-                    className="w-[75%] h-[75%] "
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <div
-                      id={`youtube-${getYoutubeVideoId(movie.youtubeVideoUrl)}`}
-                    ></div>
                   </div>
                 </div>
               </div>
             );
           })}
+        </div>
+        <div
+          className={`fixed bg-[rgba(0,0,0,0.3)] ${
+            isPVMovieOpen || isMvMovieOpen || isPastelLifeMovieOpen
+              ? "flex"
+              : "hidden"
+          } inset-0 z-20 m-0 items-center justify-center `}
+        >
+          <div
+            ref={pvMovieIFrameWrapperRef}
+            className="h-[75%] w-[75%] "
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div id={`youtube-${videoId}`}></div>
+          </div>
         </div>
       </div>
     </>

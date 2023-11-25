@@ -31,7 +31,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getNextMusicTitle, getPreviousMusicTitle } from "@/utils/musicUtils";
 import Link from "next/link";
-import { addHyphen } from "@/utils/functionsUtils";
+import { addHyphen } from "@/utils/stringUtils";
 
 type LayoutPageProps = {
   children: React.ReactNode;
@@ -47,10 +47,9 @@ const LayoutPage = ({
   const [miraiTrainSong, setMiraiTrainSong] = useState<any>();
 
   const randomIndex = Math.floor(
-    Math.random() * randomBangDreamBandMembers.length
+    Math.random() * randomBangDreamBandMembers.length,
   );
   const randomBangDreamBandMember = randomBangDreamBandMembers[randomIndex];
-
   useEffect(() => {
     var returnsSong = new Howl({
       src: [
@@ -139,7 +138,7 @@ const LayoutPage = ({
     } else {
       setActiveMenu(character);
     }
-  }, []);
+  }, [activeMenu]);
 
   const toggleReturnsSongPlay = () => {
     returnsSong.playing() ? returnsSong.pause() : returnsSong.play();
@@ -228,7 +227,7 @@ const LayoutPage = ({
   const handlePreviousMusic = () => {
     const previousMusic = getPreviousMusicTitle(
       musicTitles,
-      musicPlaying.title
+      musicPlaying.title,
     );
     setMusicPlaying({
       title: previousMusic,
@@ -278,12 +277,12 @@ const LayoutPage = ({
     <>
       <div className={`header-nav ${isHamburgerOpen ? "open" : ""}`}>
         <div className="header-nav-wrapper">
-          <div className="flex items-center gap-10 flex-col">
+          <div className="flex flex-col items-center gap-10">
             <div className="flex items-center gap-10">
               <Image
                 src={BangDreamLogo}
                 alt="BangDreamLogo"
-                className="w-80 band-dream-logo"
+                className="band-dream-logo w-80"
               />
               <div className="grid grid-cols-2 gap-x-2 gap-y-2">
                 {datas.menu.map((menu) => {
@@ -296,7 +295,7 @@ const LayoutPage = ({
                         isMenuActive ? "active" : ""
                       }`}
                     >
-                      <div className="flex items-center gap-6 px-10 py-4 nav-header-menu-container">
+                      <div className="nav-header-menu-container flex items-center gap-6 px-10 py-4">
                         <div className="nav-header-menu-name">{menu.name}</div>
                         <div className="nav-header-menu-japanese-name">
                           {menu.japanese}
@@ -446,19 +445,9 @@ const LayoutPage = ({
           }`}
         >
           <div className="music-player-menu">
-            <div className="flex items-center justify-around h-[100%]">
-              <div className="flex items-center w-[250px] ">
+            <div className="flex h-[100%] items-center justify-around">
+              <div className="flex w-[250px] items-center ">
                 <button className="tracklist_open">
-                  {/* <div className="tracklist">
-              <span className="flex items-center gap-2">
-                <span className="absolute left-[16px] w-[3px] h-[3px] rounded-full bg-[#b92b5d]  top-[25px]"></span>
-                <span className="absolute  left-[23px] w-4 h-[1px] bg-[#b92b5d] top-[26px]"></span>
-              </span>
-              <span className="flex items-center gap-2 ">
-                <span className="absolute left-[16px] w-[3px] h-[3px] rounded-full bg-[#b92b5d] top-[35px]"></span>
-                <span className="absolute left-[23px]  w-4 h-[1px] bg-[#b92b5d] top-[36px]"></span>
-              </span>
-            </div> */}
                   <Image
                     onClick={handleOpenMusicTracklist}
                     src={MusicTracker}
@@ -513,12 +502,15 @@ const LayoutPage = ({
           </div>
         </div>
       </div>
-      <div ref={sideLeftTextRef} className="side-left-text sm:hidden md:block">
+      <div
+        ref={sideLeftTextRef}
+        className="side-left-text sm:hidden md:hidden lg:block"
+      >
         BANG DREAM ! GIRLS BAND PARTY !
       </div>
       <div
         ref={sideRightRef}
-        className="side-right  flex items-center gap-[40px]"
+        className="side-right   hidden items-center gap-[40px] lg:flex"
       >
         <div className="side-right-text">SHARE</div>
         <Link target="_blank" href="https://twitter.com/bang_dream_gbp">
@@ -548,7 +540,7 @@ const LayoutPage = ({
           />
         </Link>
       </div>
-      <div className="flex justify-end m-4">
+      <div className="m-0 flex justify-end lg:m-4">
         <div
           onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}
           className={`header-hamburger ${isHamburgerOpen ? "open" : ""}`}
@@ -561,32 +553,19 @@ const LayoutPage = ({
         </div>
       </div>
       <Navbar activeMenu={activeMenu} />
-      {/* <ul className="lg:flex items-center justify-center gap-20  sm:hidden">
-  {datas.menu.map((menu, index) => {
-    const isActive = menu.name.toLowerCase() === activeMenu;
-    return (
-      <li
-        key={index}
-        className={`menu-container flex items-center justify-center flex-col gap-2 ${
-          isActive ? "active" : ""
+      <div>{children}</div>
+      <div
+        ref={footerRef}
+        className={`footer pt-[140px] ${
+          activeMenu === "" || activeMenu == undefined ? "bg-[#fdfefe]" : ""
         }`}
       >
-        <a href={menu.name.toLowerCase()}>
-          <span className="menu-name px-2 ">{menu.name}</span>
-        </a>
-        <div className="text-[#333] text-[8px]">{menu.japanese}</div>
-      </li>
-    );
-  })}
-</ul> */}
-      {children}
-      <div ref={footerRef} className="pt-[140px] footer">
         <div
           ref={footerInnerRef}
-          className="footer_inner pt-[136px] h-[500px] relative"
+          className="footer_inner relative h-[500px] pt-[136px]"
         >
-          <div className=" bg-[#b85175] h-[500px]">
-            <div className="footer-box flex items-center justify-around gap-16 bg-white m-auto max-w-5xl w-auto relative top-[-285px] bg-gradient-to-r from-[#b4bff2] to-[#f49dc6] p-20">
+          <div className=" h-[500px] bg-[#b85175]">
+            <div className="footer-box relative top-[-285px] m-auto flex w-auto max-w-5xl items-center justify-around gap-16 bg-white bg-gradient-to-r from-[#b4bff2] to-[#f49dc6] p-20">
               <div className="flex items-center justify-center gap-8 border-r-white ">
                 <Image
                   src={BangDreamAppIcon}
@@ -596,18 +575,18 @@ const LayoutPage = ({
                 />
                 <div className="flex flex-col items-start gap-3">
                   <div className="flex items-center justify-center gap-1">
-                    <div className="text-xs relative text-[#6c5173] w-[80px] after:content-[''] after:absolute after:w-[4px] after:h-[4px] after:rounded-full after:bg-white after:top-[5px] after:right-[12px]">
+                    <div className="relative w-[80px] text-xs text-[#6c5173] after:absolute after:right-[12px] after:top-[5px] after:h-[4px] after:w-[4px] after:rounded-full after:bg-white after:content-['']">
                       タイトル
                     </div>
-                    <div className="text-xs text-[#6c5173] w-[80px]">
+                    <div className="w-[80px] text-xs text-[#6c5173]">
                       バンドリ
                     </div>
                   </div>
                   <div className="flex items-center justify-center gap-1">
-                    <div className="text-xs relative text-[#6c5173] w-[80px] after:content-[''] after:absolute after:w-[4px] after:h-[4px] after:rounded-full after:bg-white after:top-[5px] after:right-[12px]">
+                    <div className="relative w-[80px] text-xs text-[#6c5173] after:absolute after:right-[12px] after:top-[5px] after:h-[4px] after:w-[4px] after:rounded-full after:bg-white after:content-['']">
                       ジャンル
                     </div>
-                    <div className="text-xs text-[#6c5173] w-[80px]">
+                    <div className="w-[80px] text-xs text-[#6c5173]">
                       リズム
                     </div>
                   </div>
@@ -641,47 +620,51 @@ const LayoutPage = ({
                 </div>
               </div>
             </div>
-            <div className="max-w-5xl w-auto mx-auto relative top-[-300px] z-[1]">
+            <div className="relative top-[-300px] z-[1] mx-auto w-auto max-w-5xl">
               <div className="grid grid-cols-2 gap-8">
                 <Link
                   href={`/character/${addHyphen(
-                    randomBangDreamBandMember.bandMembers.band
+                    randomBangDreamBandMember.bandMembers.band,
                   )}/${addHyphen(randomBangDreamBandMember.bandMembers.name)}`}
-                  className="w-auto member__footer"
+                  className="member__footer w-auto"
                 >
-                  <CldImage
-                    width={1100}
-                    height={100}
-                    src={
-                      randomBangDreamBandMember.bandMembers.image[0]
-                        .outfitSeasonThree[0]
-                    }
-                    alt="kasumi_season_3outfit"
-                    className="member-image__footer z-50"
-                  />
-                  <CldImage
-                    className="absolute top-[140px] mix-blend-multiply z-[-2] w-[160px]"
-                    src={randomBangDreamBandMember.logo}
-                    width={300}
-                    height={300}
-                    alt="band_logo"
-                  />
+                  <div>
+                    <CldImage
+                      width={1100}
+                      height={100}
+                      src={
+                        randomBangDreamBandMember.bandMembers.image[0]
+                          .outfitSeasonThree[0]
+                      }
+                      alt="kasumi_season_3outfit"
+                      className="member-image__footer z-50"
+                    />
+                  </div>
+                  <div>
+                    <CldImage
+                      className="absolute top-[140px] z-[-2] w-[160px] mix-blend-multiply"
+                      src={randomBangDreamBandMember.logo}
+                      width={300}
+                      height={300}
+                      alt="band_logo"
+                    />
+                  </div>
                   <div className="member-info__footer">
-                    <div className="member-name__footer">
+                    {/* <div className="member-name__footer">
                       {randomBangDreamBandMember.bandMembers.name}
                     </div>
                     <div className="member-japanese-name__footer">
                       {randomBangDreamBandMember.bandMembers.japaneseName}
-                    </div>
-                    <div className="flex items-center gap-10 footer-chara_more">
-                      <div className="text-white text-[14px]">MORE</div>
+                    </div> */}
+                    <div className="footer-chara_more flex items-center gap-10">
+                      <div className="text-[14px] text-white">MORE</div>
                       <div className="footer-chara_more__dot"></div>
                     </div>
                   </div>
                 </Link>
-                <div className="relative flex flex-col gap-16 top-[120px]">
+                <div className="relative top-[120px] flex flex-col gap-16">
                   <div className="header-nav-wrapper">
-                    <div className="flex  gap-10 flex-col">
+                    <div className="flex  flex-col gap-10">
                       <div className="flex items-center gap-10">
                         <div className="grid grid-cols-2 gap-x-[0.2rem] gap-y-[0.2rem]">
                           {datas.menu.map((menu) => {
@@ -695,7 +678,7 @@ const LayoutPage = ({
                                   isMenuActive ? "active" : ""
                                 }`}
                               >
-                                <div className="flex items-center gap-6 px-10 py-2 nav-header-menu-container">
+                                <div className="nav-header-menu-container flex items-center gap-6 px-10 py-2">
                                   <div className="nav-header-menu-name_footer text-[12px] text-white">
                                     {menu.name}
                                   </div>
@@ -711,8 +694,8 @@ const LayoutPage = ({
                     </div>
                     <div></div>
                   </div>
-                  <div className="flex items-center relative gap-4 py-[30px] ">
-                    <div className="text-white text-[14px]">
+                  <div className="relative flex items-center gap-4 py-[30px] ">
+                    <div className="text-[14px] text-white">
                       OFFICIAL <br /> SNS
                     </div>
                     <div className="flex items-center gap-4">
@@ -720,17 +703,17 @@ const LayoutPage = ({
                         src={bgButtonTwitter}
                         alt="bgButtonTwitter"
                         width={100}
-                        className="relative after:content-[''] after:absolute after:w-10 after:h-10 after:bg-red-600  after:"
+                        className="after:bg-red-600 after: relative after:absolute after:h-10 after:w-10  after:content-['']"
                       />
-                      <div className="absolute flex items-center justify-center gap-2 left-[85px]">
-                        <Link href=""></Link>
+                      <div className="absolute left-[85px] flex items-center justify-center gap-2">
+                        {/* <Link href=""></Link> */}
                         <Image
                           src={twitterWhiteIcon}
                           alt="twitterWhiteIcon"
                           width={20}
                           className="relative flex items-center justify-center"
                         />
-                        <div className="text-white text-[12px]">Twitter</div>
+                        <div className="text-[12px] text-white">Twitter</div>
                       </div>
                       <Image
                         src={bgButtonYoutube}
@@ -738,14 +721,14 @@ const LayoutPage = ({
                         width={100}
                         className="relative flex items-center justify-center"
                       />
-                      <div className="absolute flex items-center justify-center gap-2 left-[202px]">
+                      <div className="absolute left-[202px] flex items-center justify-center gap-2">
                         <Image
                           src={youtubeWhiteIcon}
                           alt="youtubeWhiteIcon"
                           width={20}
                           className="relative flex items-center justify-center"
                         />
-                        <div className="text-white text-[12px]">Youtube</div>
+                        <div className="text-[12px] text-white">Youtube</div>
                       </div>
                       <Image
                         src={bgButtonLine}
@@ -753,32 +736,32 @@ const LayoutPage = ({
                         width={100}
                         className="relative flex items-center justify-center"
                       />
-                      <div className="absolute flex items-center justify-center gap-2 left-[327px]">
+                      <div className="absolute left-[327px] flex items-center justify-center gap-2">
                         <Image
                           src={lineWhiteIcon}
                           alt="lineWhiteIcon"
                           width={20}
                           className="relative flex items-center justify-center"
                         />
-                        <div className="text-white text-[12px]">Line</div>
+                        <div className="text-[12px] text-white">Line</div>
                       </div>
                     </div>
-                    <span className="w-[100%] h-[2px] bg-[#ad4167] absolute top-[-3px] after:absolute after:w-[4px] after:h-[4px] after:bg-[#ad4167] after:rounded-full after:left-[-6px] after:top-[-0.5px]  before:absolute before:w-[4px] before:h-[4px] before:bg-[#ad4167] before:rounded-full before:right-[-6px] before:top-[-0.5px]"></span>
-                    <span className="w-[100%] h-[2px] bg-[#ad4167] absolute top-[108px] after:absolute after:w-[4px] after:h-[4px] after:bg-[#ad4167] after:rounded-full after:left-[-6px] after:top-[-0.5px]  before:absolute before:w-[4px] before:h-[4px] before:bg-[#ad4167] before:rounded-full before:right-[-6px] before:top-[-0.5px]"></span>
+                    <span className="absolute top-[-3px] h-[2px] w-[100%] bg-[#ad4167] before:absolute before:right-[-6px] before:top-[-0.5px] before:h-[4px] before:w-[4px] before:rounded-full before:bg-[#ad4167]  after:absolute after:left-[-6px] after:top-[-0.5px] after:h-[4px] after:w-[4px] after:rounded-full after:bg-[#ad4167]"></span>
+                    <span className="absolute top-[108px] h-[2px] w-[100%] bg-[#ad4167] before:absolute before:right-[-6px] before:top-[-0.5px] before:h-[4px] before:w-[4px] before:rounded-full before:bg-[#ad4167]  after:absolute after:left-[-6px] after:top-[-0.5px] after:h-[4px] after:w-[4px] after:rounded-full after:bg-[#ad4167]"></span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="bg-[#302a2f] h-[250px] relative z-10">
-            <div className="flex items-center justify-around gap-4 ml-10">
+          <div className="relative z-10 h-[250px] bg-[#302a2f]">
+            <div className="ml-10 flex items-center justify-around gap-4">
               <div className="flex items-center gap-4">
                 <FooterPolicy policy="Site Policy" />
                 <FooterPolicy policy="Privacy Policy" />
                 <FooterPolicy policy="動画等配信ガイドライン" />
                 <FooterPolicy policy="二次創作ガイドライン" />
               </div>
-              <div className="text-[11px] text-[#696068] mt-10">
+              <div className="mt-10 text-[11px] text-[#696068]">
                 ©BanG Dream! Project ©Craft Egg Inc. ©bushiroad All Rights
                 Reserved.
               </div>

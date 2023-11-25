@@ -6,7 +6,7 @@ import DistributedText from "@/assets/txt_cta_release.png";
 const Footer = () => {
   return (
     <div className="flex items-center justify-center ">
-      <div className=" fixed sm:bottom-[-27px] md:bottom-0 z-[200] h-[80px]">
+      <div className=" fixed z-[200] h-[80px] sm:bottom-[-27px] md:bottom-0">
         <div className="flex items-center justify-center">
           <Image
             className="relative sm:w-[475px] md:w-[800px]"
@@ -14,7 +14,7 @@ const Footer = () => {
             width={900}
             alt="Preregi"
           />
-          <div className="absolute flex items-center md:gap-12 sm:gap-6">
+          <div className="absolute flex items-center sm:gap-6 md:gap-12">
             <div className="bg-black">
               <Image
                 src={DistributedText}

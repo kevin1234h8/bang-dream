@@ -7,11 +7,11 @@ type NavbarProps = {
 
 const Navbar = ({ activeMenu }: NavbarProps) => {
   console.log(activeMenu);
-  if (activeMenu === "home") {
+  if (activeMenu === "home" || activeMenu == undefined) {
     activeMenu = "";
   }
   return (
-    <ul className="lg:flex items-center justify-center gap-20  sm:hidden">
+    <ul className="lg:flex items-center justify-center gap-20 hidden sm:hidden md:hidden">
       {datas.menu.map((menu, index) => {
         const isActive = menu.code.toLowerCase() === activeMenu;
         return (

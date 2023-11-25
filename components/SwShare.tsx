@@ -11,9 +11,9 @@ const SwShare = ({ socialMedias }: SwShareProps) => {
   return (
     <div className="flex items-center  gap-4">
       <div className="row-bullet-text text-[14px]">SHARE</div>
-      {socialMedias.map((socialMedia) => {
+      {socialMedias.map((socialMedia, index) => {
         return (
-          <div>
+          <div key={index}>
             <Link href={socialMedia.redirectUrl}>
               <CldImage
                 width={1200}

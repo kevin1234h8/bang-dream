@@ -1,10 +1,10 @@
-import bangDreamStarOutlineIconSrc from "@/assets/bangDreamStarOutlineIcon";
+import { bangDreamStarOutlineIconSrc } from "@/assets/bangDreamStarOutlineIcon";
 import PageTitle from "@/components/PageTitle";
 import SpecialSubTitle from "@/components/SpecialSubTitle";
 import SubTitle from "@/components/SubTitle";
 import { getSpecialComic } from "@/lib/Special";
 import { editBandName } from "@/utils/bandNameUtils";
-import { removeHyphens } from "@/utils/functionsUtils";
+import { removeHyphens } from "@/utils/stringUtils";
 import Image from "next/image";
 import React from "react";
 
@@ -20,9 +20,9 @@ const page = async ({ params: { bandName } }: Params) => {
   const [comic] = await Promise.all([comicData]);
 
   return (
-    <div className="max-w-5xl mx-auto w-auto">
+    <div className="mx-auto w-auto max-w-5xl">
       <div className="flex flex-col items-center justify-center">
-        <div className="flex my-8 flex-col gap-4 items-center">
+        <div className="my-8 flex flex-col items-center gap-4">
           <SubTitle title="バンドリ! ガールズバンドパーティ! The first page" />
           {/* <SpecialSubTitle specialSubTitle={`${editBandName(comic.band)}編`} /> */}
           <div className="flex items-center gap-4">

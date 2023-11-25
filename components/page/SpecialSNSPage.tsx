@@ -6,7 +6,7 @@ import {
   addHyphen,
   capitalizeFirstLetter,
   convertToUppercase,
-} from "@/utils/functionsUtils";
+} from "@/utils/stringUtils";
 import {
   addJapaneseNameToMembers,
   changePoppinPartyBandName,

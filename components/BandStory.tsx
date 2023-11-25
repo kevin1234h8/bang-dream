@@ -5,7 +5,7 @@ import {
   addHyphen,
   capitalizeFirstLetter,
   convertToUppercase,
-} from "@/utils/functionsUtils";
+} from "@/utils/stringUtils";
 import { CldImage } from "next-cloudinary";
 import { redirect } from "next/dist/server/api-utils";
 import Image from "next/image";

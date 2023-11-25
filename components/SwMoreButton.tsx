@@ -1,5 +1,5 @@
 import band from "@/data/band";
-import { addHyphen } from "@/utils/functionsUtils";
+import { addHyphen } from "@/utils/stringUtils";
 import Link from "next/link";
 
 type SwMoreButtonProps = {
