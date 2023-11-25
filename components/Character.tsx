@@ -78,24 +78,24 @@ const Character = ({
   });
 
   useEffect(() => {
-    // if (isIFrameOpen) {
-    YouTubeIframeLoader.load(function (YT) {
-      bangDreamBandIframeVideoRef.current = new YT.Player(
-        `youtube-${getYoutubeVideoId(bangDreamMember.introductionMovie)}`,
-        {
-          height: "100%",
-          width: "100%",
-          videoId: getYoutubeVideoId(bangDreamMember.introductionMovie),
-          playerVars: {
-            autoplay: 1,
+    if (isIFrameOpen) {
+      YouTubeIframeLoader.load(function (YT) {
+        bangDreamBandIframeVideoRef.current = new YT.Player(
+          `youtube-${getYoutubeVideoId(bangDreamMember.introductionMovie)}`,
+          {
+            height: "100%",
+            width: "100%",
+            videoId: getYoutubeVideoId(bangDreamMember.introductionMovie),
+            playerVars: {
+              autoplay: 1,
+            },
+            events: {
+              onReady: onPlayerReady,
+            },
           },
-          events: {
-            onReady: onPlayerReady,
-          },
-        },
-      );
-    });
-    // }
+        );
+      });
+    }
   }, [isIFrameOpen]);
 
   if (bandName === "poppin-party") {
