@@ -1,17 +1,17 @@
 const Loading = () => {
   return (
-    <div className="max-w-5xl w-auto mx-auto grid grid-cols-2 gap-x-8 gap-y-20 ">
+    <div className="mx-auto grid w-auto max-w-5xl grid-cols-2 gap-x-8 gap-y-20 ">
       {Array(10)
         .fill(0)
         .map((index) => {
           return (
             <div
               key={index}
-              className="relative max-w-5xl  rounded  animate-pulse  "
+              className="relative max-w-5xl  animate-pulse  rounded  "
             >
-              <div className="flex items-center justify-center h-48 mb-4  bg-gray-300 rounded ">
+              <div className="mb-4 flex h-48 items-center justify-center  rounded bg-gray-300 ">
                 <svg
-                  className="w-10 h-[330px] text-gray-200 "
+                  className="h-[330px] w-10 text-gray-200 "
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -22,13 +22,13 @@ const Loading = () => {
                 </svg>
               </div>
               <div className="flex items-center gap-4">
-                <div className="h-8 bg-gray-200 rounded-full w-48 "></div>
+                <div className="h-8 w-48 rounded-full bg-gray-200 "></div>
                 <div className="flex flex-col">
-                  <span className="h-5 w-80 bg-gray-200 rounded-full "></span>
-                  <div className="h-2.5 w-80 bg-gray-200 rounded-full  mt-[6px]"></div>
+                  <span className="h-5 w-80 rounded-full bg-gray-200 "></span>
+                  <div className="mt-[6px] h-2.5 w-80 rounded-full  bg-gray-200"></div>
                 </div>
               </div>
-              <div className="w-[50px] h-[50px] bg-gray-200 rounded-full absolute mt-8 right-0"></div>
+              <div className="absolute right-0 mt-8 h-[50px] w-[50px] rounded-full bg-gray-200"></div>
             </div>
           );
         })}

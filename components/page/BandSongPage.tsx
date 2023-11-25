@@ -8,8 +8,8 @@ import PageTitle from "../PageTitle";
 import SpecialSubTitle from "../SpecialSubTitle";
 
 type BandMusicPageProps = {
-  bandSongs: BangDreamSongs[];
-  bangDreamBandLogos: BangDreamBandLogos;
+  bandSongs: BangDreamSongs[] | null;
+  bangDreamBandLogos: BangDreamBandLogos | null;
 
   // handleRadioBangDreamSongBandNameClick: any;
   // handleRadioBangDreamSongTypeClick: any;
@@ -23,7 +23,9 @@ const BandMusicPage = ({
 // handleRadioBangDreamSongBandNameClick,
 // handleRadioBangDreamSongTypeClick,
 BandMusicPageProps) => {
-  const [songs, setSongs] = useState<BangDreamSongs[]>(bandSongs);
+  const [songs, setSongs] = useState<BangDreamSongs[] | null>(
+    bandSongs || null,
+  );
   const bandLogoIndex = [5, 6, 1, 2, 4, 3, 0, 7];
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedBangDreamSongBandName, setSelectedBangDreamSongBandName] =
@@ -60,7 +62,7 @@ BandMusicPageProps) => {
           selectedBangDreamSongType !== ""
         ) {
           const filteredBands = bandSongs
-            .filter(
+            ?.filter(
               (bandSong) => bandSong.band === selectedBangDreamSongBandName,
             )
             .map((band) => {
@@ -72,21 +74,21 @@ BandMusicPageProps) => {
               };
             })
             .filter((band) => band.songs.length > 0);
-          setSongs(filteredBands);
+          setSongs(filteredBands as BangDreamSongs[]);
         } else if (
           selectedBangDreamSongBandName !== "" &&
           selectedBangDreamSongType === ""
         ) {
-          const filteredSongs = bandSongs.filter((bandSong) => {
+          const filteredSongs = bandSongs?.filter((bandSong) => {
             return bandSong.band === selectedBangDreamSongBandName;
           });
-          setSongs(filteredSongs);
+          setSongs(filteredSongs as BangDreamSongs[]);
         } else if (
           selectedBangDreamSongType !== "" &&
           selectedBangDreamSongBandName === ""
         ) {
           const filteredSongs = bandSongs
-            .map((band) => {
+            ?.map((band) => {
               return {
                 ...band,
                 songs: band.songs.filter(
@@ -95,7 +97,7 @@ BandMusicPageProps) => {
               };
             })
             .filter((band) => band.songs.length > 0);
-          setSongs(filteredSongs);
+          setSongs(filteredSongs as BangDreamSongs[]);
         }
       };
       getBangDreamSongs();
@@ -205,7 +207,7 @@ BandMusicPageProps) => {
                   />
                   <div className="yakuhanjp">すべて</div>
                 </div>
-                {bangDreamBandLogos.bangDreamBandLogos.map(
+                {bangDreamBandLogos?.bangDreamBandLogos.map(
                   (bangDreamBandLogo, index) => {
                     // const bangDreamBandLogo =
                     //   bangDreamBandLogos.bangDreamBandLogos[index];
@@ -244,7 +246,7 @@ BandMusicPageProps) => {
             {selectedBangDreamSongType === "" ? (
               <SpecialSubTitle specialSubTitle="オリジナル楽曲" />
             ) : null}
-            {songs.map((bandSong, index) => {
+            {songs?.map((bandSong, index) => {
               return (
                 <BandSong
                   key={index}
@@ -259,7 +261,7 @@ BandMusicPageProps) => {
             {selectedBangDreamSongType === "" ? (
               <SpecialSubTitle specialSubTitle="カバー楽曲" />
             ) : null}
-            {songs.map((bandSong, index) => {
+            {songs?.map((bandSong, index) => {
               return (
                 <BandSong key={index} bandSong={bandSong} songType={"cover"} />
               );
@@ -270,7 +272,7 @@ BandMusicPageProps) => {
             {selectedBangDreamSongType === "" ? (
               <SpecialSubTitle specialSubTitle="エクストラ楽曲" />
             ) : null}
-            {songs.map((bandSong, index) => {
+            {songs?.map((bandSong, index) => {
               return (
                 <BandSong key={index} bandSong={bandSong} songType={"extra"} />
               );

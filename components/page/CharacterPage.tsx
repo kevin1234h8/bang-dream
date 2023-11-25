@@ -22,10 +22,13 @@ import Hamburger from "../Hamburger";
 import useOutsideClick from "@/hooks/useOutsideClick";
 
 type CharacterPageProps = {
-  bangDreamBands: BangDreamBands[];
+  bangDreamBands: BangDreamBands[] | null;
 };
 
 const CharacterPage = ({ bangDreamBands }: CharacterPageProps) => {
+  if (!bangDreamBands) {
+    return [];
+  }
   const bandIndex = [1, 0, 6, 7, 3, 2, 4, 5];
   const [videoId, setVideoId] = useState<string>("");
   const [isPoppinPartyIFrameOpen, setIsPoppinPartyIFrameOpen] =
@@ -61,25 +64,6 @@ const CharacterPage = ({ bangDreamBands }: CharacterPageProps) => {
       });
     }
   }, [isIFrameOpen, videoId]);
-  // useEffect(() => {
-  //   const handleWrapperClick = (e: MouseEvent) => {
-  //     if (
-  //       iFrameWrapperRef.current &&
-  //       !iFrameWrapperRef.current.contains(e.target as Node)
-  //     ) {
-  //       // The click occurred outside the iframe wrapper
-  //       // Close the modal or perform your desired action here
-  //       // For example, you can call a close function
-  //       closeIFrame();
-  //     }
-  //   };
-
-  //   document.addEventListener("click", handleWrapperClick);
-
-  //   return () => {
-  //     document.removeEventListener("click", handleWrapperClick);
-  //   };
-  // }, [closeIFrame]);
 
   return (
     <div>

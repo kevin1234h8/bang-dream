@@ -33,8 +33,8 @@ import SwShare from "./SwShare";
 
 type CharacterProps = {
   bangDreamMember: BandMember;
-  socialMedias: SocialMedia[];
-  bangDreamBand: BangDreamBand[];
+  socialMedias: SocialMedia[] | null;
+  bangDreamBand: BangDreamBand[] | null;
   characterName: string;
   bandName: string;
 };
@@ -367,7 +367,7 @@ const Character = ({
           </div>
           <div>
             <div className="chara-list flex items-center justify-center gap-2">
-              {bangDreamBand.map((band, index) => {
+              {bangDreamBand?.map((band, index) => {
                 return (
                   <Link
                     href={`/character/${addHyphen(

@@ -5,7 +5,7 @@ import { CldImage } from "next-cloudinary";
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 type BangDreamBandLogoIconProps = {
-  logo: BangDreamBandLogo;
+  logo: BangDreamBandLogo | null;
 };
 const BangDreamBandLogoIcon = ({ logo }: BangDreamBandLogoIconProps) => {
   const [
@@ -34,17 +34,17 @@ const BangDreamBandLogoIcon = ({ logo }: BangDreamBandLogoIconProps) => {
         width="1100"
         className={`bang-dream-logo`}
         height="1100"
-        src={logo.image}
+        src={logo?.image as string}
         sizes="100%"
-        alt={logo.name}
+        alt={logo?.name as string}
       />
       <div className="iframe-wrapper">
         <div
           className={`fixed bg-[rgba(0,0,0,0.3)] ${
             isBangDreamBandYoutubeIFrameVideoOpen ? "flex" : "hidden"
-          } inset-0 z-20 items-center justify-center m-0 h-full `}
+          } inset-0 z-20 m-0 h-full items-center justify-center `}
         >
-          <iframe src={logo.youtube} className="w-[80%] h-[80%] "></iframe>
+          <iframe src={logo?.youtube} className="h-[80%] w-[80%] "></iframe>
         </div>
       </div>
     </div>

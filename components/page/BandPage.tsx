@@ -15,8 +15,8 @@ import useOutsideClick from "@/hooks/useOutsideClick";
 import Loading from "@/app/character/loading";
 
 type BandPageProps = {
-  bangDreamBandLogoIcon: BangDreamBandLogoIcon;
-  bangDreamBandLogos: BangDreamBandLogos;
+  bangDreamBandLogoIcon: BangDreamBandLogoIcon | null;
+  bangDreamBandLogos: BangDreamBandLogos | null;
   bandName: string;
 };
 
@@ -38,7 +38,7 @@ const BandPage = ({
           height: "100%",
           width: "100%",
           videoId: getYoutubeVideoId(
-            bangDreamBandLogoIcon.bangDreamBandLogo.youtube
+            bangDreamBandLogoIcon?.bangDreamBandLogo.youtube as string,
           ),
           playerVars: {
             autoplay: 1,
@@ -53,7 +53,7 @@ const BandPage = ({
 
   const handleBangDreamBandYoutubeIFrameVideoOpen = () => {
     setIsBangDreamBandYoutubeIFrameVideoOpen(
-      !isBangDreamBandYoutubeIFrameVideoOpen
+      !isBangDreamBandYoutubeIFrameVideoOpen,
     );
     if (bangDreamBandIframeVideo) {
       bangDreamBandIframeVideo.playVideo();
@@ -71,20 +71,20 @@ const BandPage = ({
     YouTubeIframeLoader.load(function (YT) {
       new YT.Player(
         `youtube-${getYoutubeVideoId(
-          bangDreamBandLogoIcon.bangDreamBandLogo.youtube
+          bangDreamBandLogoIcon?.bangDreamBandLogo.youtube as string,
         )}`,
         {
           height: "100%",
           width: "100%",
           videoId: getYoutubeVideoId(
-            bangDreamBandLogoIcon.bangDreamBandLogo.youtube
+            bangDreamBandLogoIcon?.bangDreamBandLogo.youtube as string,
           ),
           playerVars: {
             autoplay: 1, // Autoplay when the player is ready
             loop: 1, // Loop the video
             mute: 1, // Mute the video
           },
-        }
+        },
       );
     });
   }, []);
@@ -98,7 +98,7 @@ const BandPage = ({
         <div
           className="youtube-api max-w-5xl"
           id={`youtube-${getYoutubeVideoId(
-            bangDreamBandLogoIcon.bangDreamBandLogo.youtube
+            bangDreamBandLogoIcon?.bangDreamBandLogo.youtube as string,
           )}`}
           // title="【#ガルパ超大型アップデート】Afterglow『That Is How I Roll!』3Dライブ映像"
         ></div>
@@ -114,11 +114,11 @@ const BandPage = ({
         </div>
       </div>
 
-      <div className="mx-auto max-w-5xl w-auto flex items-center justify-center gap-8 flex-col">
-        <div className="flex items-center justify-center flex-col gap-4 relative top-[-35px]">
+      <div className="mx-auto flex w-auto max-w-5xl flex-col items-center justify-center gap-8">
+        <div className="relative top-[-35px] flex flex-col items-center justify-center gap-4">
           <div>
             <div
-              className={`small text-[2.2rem] w-[600px] ${addHyphen(bandName)}`}
+              className={`small w-[600px] text-[2.2rem] ${addHyphen(bandName)}`}
             >
               花咲川女子学園で結成された
             </div>
@@ -129,7 +129,7 @@ const BandPage = ({
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-center gap-2 flex-col font-bold text-[18px] tracking-[4px]">
+        <div className="flex flex-col items-center justify-center gap-2 text-[18px] font-bold tracking-[4px]">
           <div>ガールズバンド時代にキラキラ輝く５人組女子高生バンド。</div>
           <div>
             自分たちの気持ちを音にのせて、たくさんのドキドキを届けるために日々ライブをしている。
@@ -137,15 +137,15 @@ const BandPage = ({
         </div>
         <SwMoreButton text="コミックを読む" url="/" bandName={bandName} />
       </div>
-      <div className="flex items-center justify-center max-w-5xl mx-auto w-auto gap-12 mb-[4rem]">
-        {bangDreamBandLogos.bangDreamBandLogos.map(
+      <div className="mx-auto mb-[4rem] flex w-auto max-w-5xl items-center justify-center gap-12">
+        {bangDreamBandLogos?.bangDreamBandLogos.map(
           (logo: any, index: number) => {
             return (
               <Suspense fallback={<Loading />} key={index}>
                 <BangDreamBandLogo logo={logo} bandName={bandName} />
               </Suspense>
             );
-          }
+          },
         )}
       </div>
       {{ isBangDreamBandYoutubeIFrameVideoOpen } ? (

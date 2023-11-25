@@ -10,11 +10,11 @@ const page = async () => {
   const bandStoryDatas = await getBandStories();
   const [bandStories] = await Promise.all([bandStoryDatas]);
   return (
-    <div className="max-w-7xl w-auto m-auto">
+    <div className="m-auto w-auto max-w-7xl">
       <PageTitle title="STORY" japaneseTitle="ストーリー" />
-      <div className="flex max-w-5xl w-auto m-auto items-center gap-8 flex-col my-8">
+      <div className="m-auto my-8 flex w-auto max-w-5xl flex-col items-center gap-8">
         <Image src={BgDecoCatch} alt="BgDecoCatch" />
-        <div className="text-[48px] catch_inner leading-relaxed page-title">
+        <div className="catch_inner page-title text-[48px] leading-relaxed">
           <div>
             <span className="main-catch_inner">香澄</span>たちが進む、
             <span className="main-catch_inner">3年目</span>の物語
@@ -40,7 +40,7 @@ const page = async () => {
             height={900}
             className=""
           />
-          <div className="left-[45%] tracking-[0.5rem] text-xl font-medium  bg-center flex items-center justify-center absolute  top-0 ">
+          <div className="absolute left-[45%] top-0 flex  items-center justify-center bg-center text-xl font-medium  tracking-[0.5rem] ">
             用語集
           </div>
 
@@ -51,7 +51,7 @@ const page = async () => {
             alt="WORDS"
             width={200}
             height={200}
-            className="bg-center top-0 left-[38%]  absolute"
+            className="absolute left-[38%] top-0  bg-center"
           />
         </div>
         <div className="mb-12">
@@ -64,8 +64,8 @@ const page = async () => {
             height={100}
           />
         </div>
-        <div className="flex flex-col gap-20 mb-12">
-          {bandStories.map((bandStory, index) => {
+        <div className="mb-12 flex flex-col gap-20">
+          {bandStories?.map((bandStory, index) => {
             return (
               <BandStory
                 key={index}

@@ -4,14 +4,14 @@ import Link from "next/link";
 import React from "react";
 
 type SwShareProps = {
-  socialMedias: SocialMedia[];
+  socialMedias: SocialMedia[] | null;
 };
 
 const SwShare = ({ socialMedias }: SwShareProps) => {
   return (
     <div className="flex items-center  gap-4">
       <div className="row-bullet-text text-[14px]">SHARE</div>
-      {socialMedias.map((socialMedia, index) => {
+      {socialMedias?.map((socialMedia, index) => {
         return (
           <div key={index}>
             <Link href={socialMedia.redirectUrl}>

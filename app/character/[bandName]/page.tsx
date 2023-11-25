@@ -11,6 +11,7 @@ import BandPage from "@/components/page/BandPage";
 import data from "@/data/band";
 import { addHyphen, removeHyphens } from "@/utils/stringUtils";
 import Link from "next/link";
+import { BangDreamBandLogo } from "@/type";
 
 type Params = {
   params: {
@@ -30,7 +31,9 @@ const page = async ({ params: { bandName } }: Params) => {
       bangDreamBandLogoDatas,
       bangDreamBandLogoIconByBandNameData,
     ]);
-
+  if (!bangDreamBand) {
+    return [];
+  }
   const bandIndices: number[] = [2, 4, 0, 3, 1];
   return (
     <div>
@@ -50,7 +53,11 @@ const page = async ({ params: { bandName } }: Params) => {
         })}
       </div>
       <div className="mx-auto my-[50px] w-[250px] max-w-5xl">
-        <BangDreamBandLogoIcon logo={bangDreamBandLogoIcon.bangDreamBandLogo} />
+        <BangDreamBandLogoIcon
+          logo={
+            bangDreamBandLogoIcon?.bangDreamBandLogo as BangDreamBandLogo | null
+          }
+        />
       </div>
 
       {/* <Loading /> */}

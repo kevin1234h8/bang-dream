@@ -11,7 +11,7 @@ type SpecialPaginationProps = {
   // previousSpecialRedirectUrl: string;
   // isNextSpecialRedirectUrlExists: boolean;
   // nextSpecialRedirectUrl: string;
-  socialMedias: SocialMedia[];
+  socialMedias: SocialMedia[] | null;
   pathname: string;
 };
 
@@ -42,7 +42,7 @@ SpecialPaginationProps) => {
 
   useEffect(() => {
     const currentSpecialRedirectUrlIndex = specialRedirectUrl.findIndex(
-      (x) => x === pathname
+      (x) => x === pathname,
     );
     const previousSpecialRedirectUrlIndex = currentSpecialRedirectUrlIndex - 1;
     const nextSpecialRedirectUrlIndex = currentSpecialRedirectUrlIndex + 1;
@@ -79,17 +79,17 @@ SpecialPaginationProps) => {
       <div className="mb-12 flex items-center justify-end">
         <SwShare socialMedias={socialMedias} />
       </div>
-      <div className="flex items-center special-sns-index-container justify-center gap-16">
+      <div className="special-sns-index-container flex items-center justify-center gap-16">
         {isPreviousSpecialRedirectUrl ? (
           <Link
             href={previousSpecialRedirectUrl}
-            className="special-sns-index-previous flex items-center gap-4 flex-row-reverse"
+            className="special-sns-index-previous flex flex-row-reverse items-center gap-4"
           >
             <div>PREVIOUS</div>
             <div className="chara-list-dot_left"></div>
           </Link>
         ) : (
-          <div className="special-sns-index-previous disabled flex items-center gap-4 flex-row-reverse">
+          <div className="special-sns-index-previous disabled flex flex-row-reverse items-center gap-4">
             <span className="">PREVIOUS</span>
             <div className="chara-list-dot_left"></div>
           </div>
