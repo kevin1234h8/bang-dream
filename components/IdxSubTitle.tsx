@@ -15,7 +15,7 @@ const IdxSubTitle = ({ subTitle, japaneseSubTitle }: IdxSubTitleProps) => {
         src="https://heaven-burns-red.com/assets/images/pc/index/bg_subtitle.png"
         alt=""
       />
-      <div className="text-[#b92b5d] flex  justify-center inset-0 absolute flex-col items-center">
+      <div className="absolute inset-0  flex flex-col items-center justify-center text-[#b92b5d]">
         <div className="text-3xl ">{subTitle}</div>
         <div className="yakuhanjp text-sm">{japaneseSubTitle}</div>
       </div>

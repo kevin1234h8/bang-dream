@@ -40,7 +40,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { addHyphen } from "@/utils/stringUtils";
 
 type HomePageProps = {
-  bangDreamBands: BangDreamBand[];
+  bangDreamBands: BangDreamBand[] | null;
 };
 
 const HomePage = ({ bangDreamBands }: HomePageProps) => {
@@ -567,7 +567,7 @@ const HomePage = ({ bangDreamBands }: HomePageProps) => {
             </div>
           </div>
           <div className="relative z-10 flex items-center justify-between gap-8 px-12">
-            {bangDreamBands.map((bangDreamBand, index) => {
+            {bangDreamBands?.map((bangDreamBand, index) => {
               return (
                 <Link
                   href={`/character/${addHyphen(
