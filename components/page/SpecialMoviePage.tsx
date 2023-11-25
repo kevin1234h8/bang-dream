@@ -62,9 +62,7 @@ const SpecialMoviePage = ({
     setVideoId(videoId);
     setIsPastelLifeMovieOpen(true);
   };
-  if (!specialPVMovies || !specialMVMovies || !specialPastelLifeMovies) {
-    return null;
-  }
+
   useEffect(() => {
     if (isPVMovieOpen || isMvMovieOpen || isPastelLifeMovieOpen) {
       YouTubeIframeLoader.load(function (YT) {
@@ -107,7 +105,9 @@ const SpecialMoviePage = ({
       pvMovieYoutubeIFrame = null;
     }
   };
-
+  if (!specialPVMovies || !specialMVMovies || !specialPastelLifeMovies) {
+    return null;
+  }
   return (
     <>
       {{ isPVMovieOpen } ? <Hamburger state={isPVMovieOpen} /> : null}
