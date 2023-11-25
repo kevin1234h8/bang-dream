@@ -5,22 +5,12 @@ import {
   getBangDreamBandLogoByBandName,
 } from "@/lib/BangDreamApiHandler";
 // import React, { useState } from "react";
-import data from "@/data/band";
-import BangDreamBand from "@/model/BangDreamBandMember";
 import BangDreamBandDetails from "@/components/BangDreamBandDetails";
+import BangDreamBandLogoIcon from "@/components/BangDreamBandLogoIcon";
+import BandPage from "@/components/page/BandPage";
+import data from "@/data/band";
 import { addHyphen, removeHyphens } from "@/utils/stringUtils";
 import Link from "next/link";
-import SwPlay from "@/assets/thumbnail_play.svg";
-import Image from "next/image";
-import { Suspense, useEffect, useState } from "react";
-import SwMoreButton from "@/components/SwMoreButton";
-import BangDreamBandLogo from "@/model/BangDreamBandLogo";
-import BangDreamBandLogos from "@/components/BangDreamBandLogo";
-import BangDreamBandLogoIcon from "@/components/BangDreamBandLogoIcon";
-import BangDreamBandYoutubeIFrameVideo from "@/components/BangDreamBandYoutubeIFrameVideo";
-import BandPage from "@/components/page/BandPage";
-import Loading from "./loading";
-import { getYoutubeVideoId } from "@/utils/youtubeUtils";
 
 type Params = {
   params: {
@@ -40,7 +30,6 @@ const page = async ({ params: { bandName } }: Params) => {
       bangDreamBandLogoDatas,
       bangDreamBandLogoIconByBandNameData,
     ]);
-  
 
   const bandIndices: number[] = [2, 4, 0, 3, 1];
   return (

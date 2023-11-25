@@ -1,4 +1,3 @@
-// import "swiper/css";
 import CharacterPage from "@/components/page/CharacterPage";
 import { getBangDreamBands } from "@/lib/BangDreamApiHandler";
 
