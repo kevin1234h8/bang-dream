@@ -33,7 +33,7 @@ const page = async ({ params: { bandName } }: Params) => {
               alt="bangDreamStarOulineIcon"
             />
             <div className="text-[#ff3b72] md:text-lg">
-              {editBandName(comic.band)}編
+              {editBandName(comic?.band as string)}編
             </div>
 
             <Image
@@ -45,7 +45,7 @@ const page = async ({ params: { bandName } }: Params) => {
           </div>
         </div>
         <div className="max-w-lg">
-          {comic.content.map((image, index) => {
+          {comic?.content.map((image, index) => {
             return (
               <Image
                 key={index}

@@ -10,7 +10,9 @@ const page = async () => {
   const comicIndex = [4, 5, 6, 2, 3, 0, 1];
   const comicDatas = await getSpecialComics();
   const [comics] = await Promise.all([comicDatas]);
-
+  if (!comics) {
+    return [];
+  }
   return (
     <div>
       <div className="mx-auto mb-24 w-auto max-w-4xl ">

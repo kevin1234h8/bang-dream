@@ -21,10 +21,10 @@ import SpecialSubTitle from "../SpecialSubTitle";
 import SpecialPagination from "../SpecialPagination";
 
 type SpecialMoviePageProps = {
-  specialPVMovies: SpecialMovie[];
-  specialMVMovies: SpecialMovie[];
-  specialPastelLifeMovies: SpecialMovie[];
-  socialMedias: SocialMedia[];
+  specialPVMovies: SpecialMovie[] | null;
+  specialMVMovies: SpecialMovie[] | null;
+  specialPastelLifeMovies: SpecialMovie[] | null;
+  socialMedias: SocialMedia[] | null;
 };
 
 const SpecialMoviePage = ({
@@ -62,7 +62,9 @@ const SpecialMoviePage = ({
     setVideoId(videoId);
     setIsPastelLifeMovieOpen(true);
   };
-
+  if (!specialPVMovies || !specialMVMovies || !specialPastelLifeMovies) {
+    return null;
+  }
   useEffect(() => {
     if (isPVMovieOpen || isMvMovieOpen || isPastelLifeMovieOpen) {
       YouTubeIframeLoader.load(function (YT) {

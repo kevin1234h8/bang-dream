@@ -25,8 +25,8 @@ import SpecialSubTitle from "../SpecialSubTitle";
 import SpecialPagination from "../SpecialPagination";
 
 type SpecialSNSPage = {
-  specialSNS: SpecialSNS[];
-  socialMedias: SocialMedia[];
+  specialSNS: SpecialSNS[] | null;
+  socialMedias: SocialMedia[] | null;
 };
 
 const SpecialSNSPage = ({ specialSNS }: SpecialSNSPage) => {
@@ -74,7 +74,9 @@ const SpecialSNSPage = ({ specialSNS }: SpecialSNSPage) => {
         "https://bang-dream.bushimo.jp/wordpress/wp-content/themes/bang-dream_gbp_v2/assets/images/common/special/sns/snsHeader_8.jpg",
     },
   ];
-
+  if (!specialSNS) {
+    return null;
+  }
   return (
     <div className=" mb-24">
       <div className="mx-auto w-full max-w-4xl">
