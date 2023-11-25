@@ -1,31 +1,11 @@
 "use client";
 
-import { BangDreamBandLogos, BangDreamSong, BangDreamSongs } from "@/type";
-import React, { useEffect, useState } from "react";
-import PageTitle from "../PageTitle";
-import Image from "next/image";
+import { BangDreamBandLogos, BangDreamSongs } from "@/type";
 import { CldImage } from "next-cloudinary";
-import {
-  getBangDreamSongBySongType,
-  getBangDreamSongs,
-} from "@/lib/BangDreamApiHandler";
-import BandSongs from "../BandSongs";
-import axios from "axios";
-import { BASE_URL } from "@/config";
-import {
-  bangDreamAfterglowSubIcon,
-  bangDreamHelloHappyWorldSubIcon,
-  bangDreamMorfonicaSubIcon,
-  bangDreamMyGoSubIcon,
-  bangDreamPastelPalettesSubIcon,
-  bangDreamPoppinPartySubIcon,
-  bangDreamRaiseASuilenSubIcon,
-  bangDreamRoseliaSubIcon,
-  bangDreamStarOutlineIconSrc,
-} from "@/assets/bangDreamStarOutlineIcon";
-import SpecialSubTitle from "../SpecialSubTitle";
+import { useEffect, useState } from "react";
 import BandSong from "../BandSong";
-import Loading from "../../app/music/Loading";
+import PageTitle from "../PageTitle";
+import SpecialSubTitle from "../SpecialSubTitle";
 
 type BandMusicPageProps = {
   bandSongs: BangDreamSongs[];

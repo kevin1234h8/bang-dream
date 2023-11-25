@@ -1,4 +1,4 @@
-import bangDreamStarOutlineIconSrc from "@/assets/bangDreamStarOutlineIcon";
+import { bangDreamStarOutlineIconSrc } from "@/assets/bangDreamStarOutlineIcon";
 import { editBandName } from "@/utils/bandNameUtils";
 import Image from "next/image";
 import { type } from "os";
