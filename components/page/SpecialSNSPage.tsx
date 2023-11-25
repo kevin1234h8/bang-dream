@@ -30,7 +30,8 @@ type SpecialSNSPage = {
 };
 
 const SpecialSNSPage = ({ specialSNS }: SpecialSNSPage) => {
-  const specialSNSIndex: number[] = [4, 1, 2, 3, 4, 5, 6, 7];
+  const specialSNSIndex: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
+  // const specialSNSIndex: number[] = [3, 2, 5, 2, 4, 6, 7, 0];
   const specialSNSHeader = [
     {
       band: "poppin party",

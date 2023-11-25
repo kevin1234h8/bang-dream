@@ -36,7 +36,7 @@ const CharacterPage = ({ bangDreamBands }: CharacterPageProps) => {
   var bangDreamBandIframeVideo: any;
 
   const [isIFrameOpen, setIsIFrameOpen] = useState<boolean>(false);
-  useOutsideClick(iFrameWrapperRef, () => {
+  useOutsideClick(isIFrameOpen, iFrameWrapperRef, () => {
     closeIframe(setIsIFrameOpen, bangDreamBandIframeVideo);
   });
   const handlePoppinPartyIFrame = (videoId: string) => {

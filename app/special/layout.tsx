@@ -5,7 +5,11 @@ import React from "react";
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const socialMediaDatas = await getSocialMedia();
   const [socialMedias] = await Promise.all([socialMediaDatas]);
-  return <SpecialLayoutPage children={children} socialMedias={socialMedias} />;
+  return (
+    <SpecialLayoutPage socialMedias={socialMedias}>
+      {children}
+    </SpecialLayoutPage>
+  );
 };
 
 export default layout;

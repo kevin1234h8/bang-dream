@@ -37,9 +37,9 @@ type HomePageProps = {
 };
 
 const HomePage = ({ bangDreamBands }: HomePageProps) => {
+  const refs = bangDreamBands.map(() => useRef(null));
   const characterProfileDetailsRef = useRef(null);
   const iFrameWrapperRef = useRef<HTMLDivElement | null>(null);
-  const refs = bangDreamBands.map(() => useRef(null));
   useEffect(() => {
     const characterProfileContainerOne = refs[0].current;
     const characterProfileContainerTwo = refs[1].current;
@@ -129,7 +129,7 @@ const HomePage = ({ bangDreamBands }: HomePageProps) => {
     isHomePageYoutubeIFrameVideoOpen,
     setIsHomePageYoutubeIFrameVideoOpen,
   ] = useState<boolean>(false);
-  useOutsideClick(iFrameWrapperRef, () => {
+  useOutsideClick(isHomePageYoutubeIFrameVideoOpen, iFrameWrapperRef, () => {
     closeIframe(setIsHomePageYoutubeIFrameVideoOpen, homepageIframeVideo);
   });
   useEffect(() => {

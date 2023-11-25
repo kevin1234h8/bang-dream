@@ -46,11 +46,14 @@ const Character = ({
   bangDreamBand,
   characterName,
 }: CharacterProps) => {
+  const [isIFrameOpen, setIsIFrameOpen] = useState<boolean>(false);
+  const iFrameWrapperRef = useRef<HTMLDivElement | null>(null);
+  let bangDreamBandIframeVideo: any = null;
+  const bangDreamBandIframeVideoRef = useRef(null);
   const [bangDreamSeason, setBangDreamSeasonNumber] = useState<number>(3);
   const handleBangDreamMemberSeasonOutfit = (season: number) => {
     setBangDreamSeasonNumber(season);
   };
-  const [isIFrameOpen, setIsIFrameOpen] = useState<boolean>(false);
 
   const handleOpenIFrame = () => {
     setIsIFrameOpen(!isIFrameOpen);
@@ -79,18 +82,14 @@ const Character = ({
     data.bandList,
   );
 
-  const iFrameWrapperRef = useRef<HTMLDivElement | null>(null);
-
-  useOutsideClick(iFrameWrapperRef, () => {
-    closeIframe(setIsIFrameOpen, bangDreamBandIframeVideo);
+  useOutsideClick(isIFrameOpen, iFrameWrapperRef, () => {
+    closeIframe(setIsIFrameOpen, bangDreamBandIframeVideoRef.current);
   });
-
-  let bangDreamBandIframeVideo: any = null;
 
   useEffect(() => {
     if (isIFrameOpen) {
       YouTubeIframeLoader.load(function (YT) {
-        bangDreamBandIframeVideo = new YT.Player(
+        bangDreamBandIframeVideoRef.current = new YT.Player(
           `youtube-${getYoutubeVideoId(bangDreamMember.introductionMovie)}`,
           {
             height: "100%",

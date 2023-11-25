@@ -30,10 +30,9 @@ export default async function RootLayout({
       </head>
       <body className="overflow-x-hidden scrollbar-thin scrollbar-thumb-[#7f7f7f] ">
         <NextTopLoader color="#b92b5d" />
-        <LayoutPage
-          randomBangDreamBandMembers={randomBangDreamBandMembers}
-          children={children}
-        />
+        <LayoutPage randomBangDreamBandMembers={randomBangDreamBandMembers}>
+          {children}
+        </LayoutPage>
       </body>
     </html>
   );
