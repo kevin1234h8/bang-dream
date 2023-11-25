@@ -24,7 +24,14 @@ import {
 } from "swiper/modules";
 import "swiper/css/effect-fade";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  RefObject,
+} from "react";
 import { closeIframe, getYoutubeVideoId } from "@/utils/youtubeUtils";
 import useOutsideClick from "@/hooks/useOutsideClick";
 import Hamburger from "../Hamburger";
@@ -38,95 +45,96 @@ type HomePageProps = {
 
 const HomePage = ({ bangDreamBands }: HomePageProps) => {
   // const refs = bangDreamBands.map(() => useRef(null));
-  const refs = Array.from({ length: bangDreamBands.length }, () =>
-    useRef<HTMLAnchorElement>(null),
-  );
+  // const refs = Array.from({ length: bangDreamBands.length }, () =>
+  //   useRef<HTMLAnchorElement>(null),
+  // );
   const characterProfileDetailsRef = useRef(null);
   const iFrameWrapperRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    const characterProfileContainerOne = refs[0].current;
-    const characterProfileContainerTwo = refs[1].current;
-    const characterProfileContainerThree = refs[2].current;
-    const characterProfileContainerFour = refs[3].current;
-    const characterProfileContainerFive = refs[4].current;
-    const characterProfileDetails = characterProfileDetailsRef.current;
+  const refs: RefObject<HTMLAnchorElement> = useRef(null);
+  // useEffect(() => {
+  //   const characterProfileContainerOne  = refs[0].current;
+  //   const characterProfileContainerTwo = refs[1].current;
+  //   const characterProfileContainerThree = refs[2].current;
+  //   const characterProfileContainerFour = refs[3].current;
+  //   const characterProfileContainerFive = refs[4].current;
+  //   const characterProfileDetails = characterProfileDetailsRef.current;
 
-    const tl = gsap.timeline();
-    tl.fromTo(
-      characterProfileContainerOne,
-      { x: -100, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.3 },
-    );
-    ScrollTrigger.create({
-      animation: tl,
-      trigger: characterProfileDetails,
-      start: "top center",
-      end: "bottom center",
-      markers: true,
-      toggleActions: "restart none none none",
-      once: true,
-    });
+  //   const tl = gsap.timeline();
+  //   tl.fromTo(
+  //     characterProfileContainerOne,
+  //     { x: -100, opacity: 0 },
+  //     { x: 0, opacity: 1, duration: 0.3 },
+  //   );
+  //   ScrollTrigger.create({
+  //     animation: tl,
+  //     trigger: characterProfileDetails,
+  //     start: "top center",
+  //     end: "bottom center",
+  //     markers: true,
+  //     toggleActions: "restart none none none",
+  //     once: true,
+  //   });
 
-    tl.fromTo(
-      characterProfileContainerTwo,
-      { x: -100, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.3, delay: 0.1 },
-    );
-    ScrollTrigger.create({
-      animation: tl,
-      trigger: characterProfileDetails,
-      start: "top center",
-      end: "bottom center",
-      markers: true,
-      toggleActions: "restart none none none",
-      once: true,
-    });
+  //   tl.fromTo(
+  //     characterProfileContainerTwo,
+  //     { x: -100, opacity: 0 },
+  //     { x: 0, opacity: 1, duration: 0.3, delay: 0.1 },
+  //   );
+  //   ScrollTrigger.create({
+  //     animation: tl,
+  //     trigger: characterProfileDetails,
+  //     start: "top center",
+  //     end: "bottom center",
+  //     markers: true,
+  //     toggleActions: "restart none none none",
+  //     once: true,
+  //   });
 
-    tl.fromTo(
-      characterProfileContainerThree,
-      { x: -100, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.3, delay: 0.1 },
-    );
-    ScrollTrigger.create({
-      animation: tl,
-      trigger: characterProfileDetails,
-      start: "top center",
-      end: "bottom center",
-      markers: true,
-      toggleActions: "restart none none none",
-      once: true,
-    });
+  //   tl.fromTo(
+  //     characterProfileContainerThree,
+  //     { x: -100, opacity: 0 },
+  //     { x: 0, opacity: 1, duration: 0.3, delay: 0.1 },
+  //   );
+  //   ScrollTrigger.create({
+  //     animation: tl,
+  //     trigger: characterProfileDetails,
+  //     start: "top center",
+  //     end: "bottom center",
+  //     markers: true,
+  //     toggleActions: "restart none none none",
+  //     once: true,
+  //   });
 
-    tl.fromTo(
-      characterProfileContainerFour,
-      { x: -100, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.3, delay: 0.1 },
-    );
-    ScrollTrigger.create({
-      animation: tl,
-      trigger: characterProfileDetails,
-      start: "top center",
-      end: "bottom center",
-      markers: true,
-      toggleActions: "restart none none none",
-      once: true,
-    });
+  //   tl.fromTo(
+  //     characterProfileContainerFour,
+  //     { x: -100, opacity: 0 },
+  //     { x: 0, opacity: 1, duration: 0.3, delay: 0.1 },
+  //   );
+  //   ScrollTrigger.create({
+  //     animation: tl,
+  //     trigger: characterProfileDetails,
+  //     start: "top center",
+  //     end: "bottom center",
+  //     markers: true,
+  //     toggleActions: "restart none none none",
+  //     once: true,
+  //   });
 
-    tl.fromTo(
-      characterProfileContainerFive,
-      { x: -100, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.3, delay: 0.1 },
-    );
-    ScrollTrigger.create({
-      animation: tl,
-      trigger: characterProfileDetails,
-      start: "top center",
-      end: "bottom center",
-      markers: true,
-      toggleActions: "restart none none none",
-      once: true,
-    });
-  }, []);
+  //   tl.fromTo(
+  //     characterProfileContainerFive,
+  //     { x: -100, opacity: 0 },
+  //     { x: 0, opacity: 1, duration: 0.3, delay: 0.1 },
+  //   );
+  //   ScrollTrigger.create({
+  //     animation: tl,
+  //     trigger: characterProfileDetails,
+  //     start: "top center",
+  //     end: "bottom center",
+  //     markers: true,
+  //     toggleActions: "restart none none none",
+  //     once: true,
+  //   });
+  // }, []);
   var homepageIframeVideo: any = null;
   const [
     isHomePageYoutubeIFrameVideoOpen,
@@ -567,7 +575,7 @@ const HomePage = ({ bangDreamBands }: HomePageProps) => {
                   )}/${addHyphen(bangDreamBand.bandMembers.name)}`}
                   key={index}
                   className="character-profile-container"
-                  ref={refs[index]}
+                  // ref={refs[index]}
                 >
                   <div className="relative h-[300px] overflow-hidden ">
                     <div className=" character-profile absolute top-[45px] z-10 h-[400px] w-full"></div>
