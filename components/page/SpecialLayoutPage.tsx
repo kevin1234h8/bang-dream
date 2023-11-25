@@ -9,7 +9,7 @@ import { SocialMedia } from "@/type";
 
 type SpecialLayoutPageProps = {
   children: React.ReactNode;
-  socialMedias: SocialMedia[];
+  socialMedias: SocialMedia[] | null;
 };
 
 const SpecialLayoutPage = ({
@@ -19,10 +19,10 @@ const SpecialLayoutPage = ({
   const pathname = usePathname();
   return (
     <div>
-      <div className="max-w-7xl mx-auto w-auto">
+      <div className="mx-auto w-auto max-w-7xl">
         <PageTitle title="SPECIAL" japaneseTitle="スペシャル" />
       </div>
-      <div className="max-w-4xl mx-auto w-full sm:px-14">
+      <div className="mx-auto w-full max-w-4xl sm:px-14">
         <div>{children}</div>
         <SpecialPagination socialMedias={socialMedias} pathname={pathname} />
       </div>
