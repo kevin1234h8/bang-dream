@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/config";
+// import { process.env.BASE_URL } from "@/config";
 import {
   BandMember,
   BandoriMembers,
@@ -15,14 +15,16 @@ import {
 import axios from "axios";
 
 export const getBangDreamBandDatas = async (): Promise<BandMember[]> => {
-  const res = await axios.get(`${BASE_URL}/api/bang-dream-band`);
+  const res = await axios.get(`${process.env.BASE_URL}/api/bang-dream-band`);
   return res.data.bangDreamBand;
 };
 
 export const getBangDreamBand = async (
   bandName: string,
 ): Promise<BangDreamBand[]> => {
-  const res = await axios.get(`${BASE_URL}/api/bang-dream-band/${bandName}`);
+  const res = await axios.get(
+    `${process.env.BASE_URL}/api/bang-dream-band/${bandName}`,
+  );
   return res.data.bangDreamBand;
 };
 
@@ -31,7 +33,7 @@ export const getBangDreamMember = async (
   characterName: string,
 ) => {
   const res = await axios.get(
-    `${BASE_URL}/api/bang-dream-band/${bandName}/${characterName}`,
+    `${process.env.BASE_URL}/api/bang-dream-band/${bandName}/${characterName}`,
   );
   return res.data.bandMember.bandMembers;
 };
@@ -40,7 +42,9 @@ export const getBangDreamMemberMainImage = async (): Promise<
   BangDreamMemberMainImage[]
 > => {
   try {
-    const res = await axios.get(`${BASE_URL}api/bang-dream-member-main-image`);
+    const res = await axios.get(
+      `${process.env.BASE_URL}api/bang-dream-member-main-image`,
+    );
     return res.data;
   } catch {
     throw new Error("Error");
@@ -49,7 +53,9 @@ export const getBangDreamMemberMainImage = async (): Promise<
 
 export const getBangDreamBandLogo = async (): Promise<BangDreamBandLogos> => {
   try {
-    const res = await axios.get(`${BASE_URL}api/band-dream-band-logo`);
+    const res = await axios.get(
+      `${process.env.BASE_URL}api/band-dream-band-logo`,
+    );
     return res.data;
   } catch {
     throw new Error("Error");
@@ -61,7 +67,7 @@ export const getBangDreamBandLogoByBandName = async (
 ): Promise<BangDreamBandLogoIcon> => {
   try {
     const res = await axios.get(
-      `${BASE_URL}api/band-dream-band-logo/${bandName}`,
+      `${process.env.BASE_URL}api/band-dream-band-logo/${bandName}`,
     );
     return res.data;
   } catch {
@@ -76,7 +82,9 @@ export const getRandomBangDreamBandMember = async () => {
     return cachedBandMembers;
   }
   try {
-    const res = await axios.get(`${BASE_URL}api/bang-dream-band/band-member`);
+    const res = await axios.get(
+      `${process.env.BASE_URL}api/bang-dream-band/band-member`,
+    );
     cachedBandMembers = res.data.bangDreamBandMembers;
     return cachedBandMembers;
   } catch (error) {
@@ -87,7 +95,9 @@ export const getRandomBangDreamBandMember = async () => {
 
 export const getBangDreamBands = async (): Promise<BangDreamBands[]> => {
   try {
-    const res = await axios.get(`${BASE_URL}api/bang-dream-band/band`);
+    const res = await axios.get(
+      `${process.env.BASE_URL}api/bang-dream-band/band`,
+    );
     return res.data.result.data;
   } catch {
     throw new Error("Error");
@@ -96,7 +106,7 @@ export const getBangDreamBands = async (): Promise<BangDreamBands[]> => {
 
 // export const getBangDreamSongs = async (): Promise<BangDreamSongs[]> => {
 //   try {
-//     const res = await axios.get(`${BASE_URL}api/bang-dream-band/songs`);
+//     const res = await axios.get(`${process.env.BASE_URL}api/bang-dream-band/songs`);
 //     return res.data.result.data;
 //   } catch {
 //     throw new Error("Error");
@@ -112,17 +122,19 @@ export const getBangDreamSongs = async (
     console.log(type);
     let res;
     if (bandName === "" && type === "") {
-      res = await axios.get(`${BASE_URL}api/bang-dream-band/songs`);
+      res = await axios.get(`${process.env.BASE_URL}api/bang-dream-band/songs`);
     } else if (bandName !== "" && type === "") {
       res = await axios.get(
-        `${BASE_URL}api/bang-dream-band/songs/${bandName}/${type}`,
+        `${process.env.BASE_URL}api/bang-dream-band/songs/${bandName}/${type}`,
       );
     } else if (bandName !== "") {
       res = await axios.get(
-        `${BASE_URL}api/bang-dream-band/songs/${bandName}/`,
+        `${process.env.BASE_URL}api/bang-dream-band/songs/${bandName}/`,
       );
     } else if (type !== "") {
-      res = await axios.get(`${BASE_URL}api/bang-dream-band/songs/${type}/`);
+      res = await axios.get(
+        `${process.env.BASE_URL}api/bang-dream-band/songs/${type}/`,
+      );
     }
     return res?.data.result.data;
   } catch {
@@ -135,7 +147,7 @@ export const getBangDreamSongBySongType = async (
 ): Promise<BangDreamSongs[]> => {
   try {
     const res = await axios.get(
-      `${BASE_URL}api/bang-dream-band/songs/type/${type}`,
+      `${process.env.BASE_URL}api/bang-dream-band/songs/type/${type}`,
     );
     return res.data.result.data;
   } catch {
