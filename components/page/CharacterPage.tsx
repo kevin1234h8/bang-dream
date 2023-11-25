@@ -43,9 +43,7 @@ const CharacterPage = ({ bangDreamBands }: CharacterPageProps) => {
     setIsIFrameOpen(!isIFrameOpen);
     setVideoId(videoId);
   };
-  if (!bangDreamBands) {
-    return [];
-  }
+
   useEffect(() => {
     console.log(videoId);
     if (isIFrameOpen) {
@@ -64,7 +62,9 @@ const CharacterPage = ({ bangDreamBands }: CharacterPageProps) => {
       });
     }
   }, [isIFrameOpen, videoId]);
-
+  if (!bangDreamBands) {
+    return [];
+  }
   return (
     <div>
       <div className="character-container mx-auto w-auto max-w-7xl">
