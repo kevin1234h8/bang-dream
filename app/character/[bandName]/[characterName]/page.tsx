@@ -18,7 +18,7 @@ const page = async ({ params: { bandName, characterName } }: Params) => {
   bandName = removeHyphens(bandName);
   const bangDreamMemberData = await getBangDreamMember(
     removeHyphens(bandName),
-    characterName
+    characterName,
   );
   const socialMediaData = await getSocialMedia();
   const bangDreamBandDatas = await getBangDreamBand(bandName);
@@ -30,11 +30,6 @@ const page = async ({ params: { bandName, characterName } }: Params) => {
   ]);
   return (
     <div className="character-main-container">
-      <div className="flex items-center justify-center character-background my-20 relative">
-        <div className="character-background-deco"></div>
-        <div className="character-background-text">CHARACTER</div>
-        <div className="character-background-text_japan">キャラクター</div>
-      </div>
       <Character
         bandName={bandName}
         characterName={characterName}
