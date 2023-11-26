@@ -105,6 +105,20 @@ const SpecialMoviePage = ({
       pvMovieYoutubeIFrame = null;
     }
   };
+  const closeMVMovieIFrame = () => {
+    setIsPVMovieOpen(false);
+    if (specialMVMovies) {
+      pvMovieYoutubeIFrame.destroy(); // Destroy the previous player instance
+      pvMovieYoutubeIFrame = null;
+    }
+  };
+  const closePastelLifeMovieIFrame = () => {
+    setIsPVMovieOpen(false);
+    if (specialPastelLifeMovies) {
+      pvMovieYoutubeIFrame.destroy(); // Destroy the previous player instance
+      pvMovieYoutubeIFrame = null;
+    }
+  };
   if (!specialPVMovies || !specialMVMovies || !specialPastelLifeMovies) {
     return null;
   }

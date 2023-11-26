@@ -1,34 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Bang Dream
 
-## Getting Started
+Welcome to the Bang Dream Info Hub! This web application serves as a comprehensive guide to the world of Bang Dream, covering everything from the bands and characters to songs, openings, and even the movies. Whether you're a seasoned fan or a newcomer, this hub is designed to be your go-to resource for all things Bang Dream.
 
-First, run the development server:
+## Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. [About Bang Dream](#about-bang-dream)
+2. [Bands](#bands)
+3. [Characters](#characters)
+4. [Songs](#songs)
+5. [Openings](#openings)
+6. [Movies](#movies)
+7. [Events](#events)
+8. [Merchandise](#merchandise)
+9. [How to Contribute](#how-to-contribute)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## About Bang Dream
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Bang Dream is a multimedia franchise that combines elements of music, anime, and gaming. It revolves around various all-girl bands, each with its unique style and charm. The franchise includes mobile games, anime series, live performances, and a diverse discography of songs.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Bands
 
-## Learn More
+Explore the vibrant world of Bang Dream through its diverse set of bands. From Poppin'Party to Afterglow, each band brings its own flavor to the stage. Learn about the band members, their backstories, and the music they create.
 
-To learn more about Next.js, take a look at the following resources:
+## Characters
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Dive into the rich character lore of Bang Dream. Get to know the personalities, backgrounds, and interactions of the various characters that make up the bands. Whether it's the determined Kasumi Toyama or the cool and collected Yukina Minato, each character has a story to tell.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Songs
 
-## Deploy on Vercel
+Discover the extensive catalog of songs produced by the Bang Dream bands. From high-energy pop-rock anthems to soulful ballads, the music of Bang Dream spans a wide range of genres. Find information about individual songs, their lyrics, and notable performances.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Openings
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Experience the anime side of Bang Dream through its opening sequences. Check out the visually stunning and musically captivating openings that set the tone for each season of the anime.
+
+## Movies
+
+Learn about the Bang Dream movies that bring the stories of the bands to the big screen. From concert films to cinematic adventures, these movies offer a deeper look into the lives and aspirations of your favorite characters.
+
+## Events
+
+Stay updated on upcoming Bang Dream events, including live performances, collaborations, and in-game events. Don't miss out on the latest happenings in the world of Bang Dream.
+
+## Merchandise
+
+Explore the world of Bang Dream beyond the screen with a showcase of official merchandise. From concert goods to character-themed items, find out where you can get your hands on the latest and greatest Bang Dream collectibles.
+
+## How to Contribute
+
+This hub is a community-driven project, and your contributions are welcome! If you have additional information, corrections, or new content to add, please check the [contribution guidelines](CONTRIBUTING.md) to ensure a smooth collaboration.
+
+Thank you for being a part of the Bang Dream community! Let the music and excitement guide you on this incredible journey. 🎶✨
