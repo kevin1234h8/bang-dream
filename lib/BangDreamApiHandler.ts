@@ -20,7 +20,7 @@ export const getBangDreamBandDatas = async (): Promise<BandMember[] | null> => {
     return null;
   }
   const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/bang-dream-band`,
+    `${process.env.NEXT_PUBLIC_BASE_API_URL}api/bang-dream-band`,
   );
   return res.data.bangDreamBand;
 };
@@ -32,7 +32,7 @@ export const getBangDreamBand = async (
     return null;
   }
   const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/bang-dream-band/${bandName}`,
+    `${process.env.NEXT_PUBLIC_BASE_API_URL}api/bang-dream-band/${bandName}`,
   );
   return res.data.bangDreamBand;
 };
@@ -45,7 +45,7 @@ export const getBangDreamMember = async (
     return null;
   }
   const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/bang-dream-band/${bandName}/${characterName}`,
+    `${process.env.NEXT_PUBLIC_BASE_API_URL}api/bang-dream-band/${bandName}/${characterName}`,
   );
   return res.data.bandMember.bandMembers;
 };

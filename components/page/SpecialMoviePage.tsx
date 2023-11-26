@@ -111,8 +111,10 @@ const SpecialMoviePage = ({
   return (
     <>
       {{ isPVMovieOpen } ? <Hamburger state={isPVMovieOpen} /> : null}
-      {{ isMvMovieOpen } ? <Hamburger state={isPVMovieOpen} /> : null}
-      {{ isPastelLifeMovieOpen } ? <Hamburger state={isPVMovieOpen} /> : null}
+      {{ isMvMovieOpen } ? <Hamburger state={isMvMovieOpen} /> : null}
+      {{ isPastelLifeMovieOpen } ? (
+        <Hamburger state={isPastelLifeMovieOpen} />
+      ) : null}
 
       <div className="mx-auto  mb-24 w-auto max-w-4xl sm:p-12 ">
         <SubTitle title="ムービー" />
