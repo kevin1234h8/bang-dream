@@ -13,7 +13,6 @@ import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import "swiper/css/pagination";
 import YouTubeIframeLoader from "youtube-iframe";
-
 import {
   A11y,
   Navigation,
@@ -178,7 +177,7 @@ const HomePage = ({ bangDreamBands }: HomePageProps) => {
         },
       });
     });
-  });
+  }, [isHomePageYoutubeIFrameVideoOpen]);
 
   const idxBanners = [
     {

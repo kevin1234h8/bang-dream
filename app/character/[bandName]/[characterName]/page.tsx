@@ -4,7 +4,7 @@ import {
   getBangDreamBand,
   getBangDreamMember,
 } from "@/lib/BangDreamApiHandler";
-import Character from "@/components/Character";
+// import Character from "@/components/Character";
 import { getSocialMedia } from "@/lib/SocialMediaApi";
 import { removeHyphens } from "@/utils/stringUtils";
 type Params = {
@@ -13,7 +13,10 @@ type Params = {
     characterName: string;
   };
 };
-
+import dynamic from "next/dynamic";
+const Character = dynamic(() => import("@/components/Character"), {
+  ssr: false,
+});
 const page = async ({ params: { bandName, characterName } }: Params) => {
   bandName = removeHyphens(bandName);
   const bangDreamMemberData = await getBangDreamMember(

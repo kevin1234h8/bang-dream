@@ -101,7 +101,7 @@ let cachedBandMembers: any = null;
 
 export const getRandomBangDreamBandMember = async () => {
   if (!process.env.NEXT_PUBLIC_BASE_API_URL) {
-    return null;
+    return [null];
   }
   if (cachedBandMembers) {
     return cachedBandMembers;

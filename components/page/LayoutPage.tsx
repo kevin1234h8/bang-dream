@@ -47,7 +47,7 @@ const LayoutPage = ({
   const [miraiTrainSong, setMiraiTrainSong] = useState<any>();
 
   const randomIndex = Math.floor(
-    Math.random() * randomBangDreamBandMembers.length,
+    Math.random() * randomBangDreamBandMembers?.length,
   );
   const randomBangDreamBandMember = randomBangDreamBandMembers[randomIndex];
   useEffect(() => {

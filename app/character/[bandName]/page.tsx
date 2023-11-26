@@ -7,17 +7,22 @@ import {
 // import React, { useState } from "react";
 import BangDreamBandDetails from "@/components/BangDreamBandDetails";
 import BangDreamBandLogoIcon from "@/components/BangDreamBandLogoIcon";
-import BandPage from "@/components/page/BandPage";
+// import BandPage from "@/components/page/BandPage";
 import data from "@/data/band";
 import { addHyphen, removeHyphens } from "@/utils/stringUtils";
 import Link from "next/link";
 import { BangDreamBandLogo } from "@/type";
+import dynamic from "next/dynamic";
 
 type Params = {
   params: {
     bandName: string;
   };
 };
+
+const BandPage = dynamic(() => import("@/components/page/BandPage"), {
+  ssr: false,
+});
 
 const page = async ({ params: { bandName } }: Params) => {
   bandName = removeHyphens(bandName);
