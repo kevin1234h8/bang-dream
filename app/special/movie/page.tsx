@@ -8,12 +8,14 @@ import {
 } from "@/lib/Special";
 import dynamic from "next/dynamic";
 import React from "react";
+
 const SpecialMoviePage = dynamic(
   () => import("@/components/page/SpecialMoviePage"),
   {
     ssr: false,
   },
 );
+
 const page = async () => {
   const specialPVMovieDatas = await getSpecialPVMovies();
   const specialMVMovieDatas = await getSpecialMVMovies();
